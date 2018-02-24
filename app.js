@@ -6,11 +6,81 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+const session       = require("express-session");
+const bcrypt        = require("bcrypt");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
+const flash = require("connect-flash");
+const User = require("./models/user");
 
 
 mongoose.connect('mongodb://localhost/partyhooper');
 
 const app = express();
+
+//enable sessions here
+
+app.use(session({
+  secret: "bliss",
+  resave: true,
+  saveUninitializer: true
+}));
+
+//initialize passport and session here
+
+passport.serializeUser((user,cb)=>{
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb)=>{
+  User.findOne({"_id":id}, (err,user)=>{
+    if(err) return cb(err);
+    cb(null, user);
+  })
+});
+
+app.use(flash());
+
+passport.use(new LocalStrategy({passReqToCallback:true},(req, username, password, next)=>{
+  User.findOne({username}, (err, user)=>{
+    if(err) return next(err);
+    if(!user) return next(null, false, {message: "Incorrect username"});
+    if(!bcrypt.compareSync(password, user.password)) return next(null, false, {message: "Incorrect password"});
+    return next(null, user);
+  });
+}));
+
+passport.use(new FbStrategy({
+  clientID: "2004252213161127",
+  clientSecret: "23a2542f53ab00aa94291833e6c48ebd",
+  callbackURL: "/auth/facebook/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ facebookID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      provider_id: profile.id,
+      provider_name: profile.displayName
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +100,11 @@ app.use(layouts);
 
 const index = require('./routes/index');
 app.use('/', index);
+app.get("/auth/facebook", passport.authenticate("facebook"));
+app.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/",
+  failureRedirect: "/"
+}));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
