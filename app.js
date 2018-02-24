@@ -12,7 +12,7 @@ const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const FbStrategy = require('passport-facebook').Strategy;
 const flash = require("connect-flash");
-const User = require("./models/user");
+const User = require("./models/User");
 
 
 mongoose.connect('mongodb://localhost/partyhooper');

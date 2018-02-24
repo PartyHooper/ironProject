@@ -4,10 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Hopper</title>
 </head>
 <body>
     <h2>Hopper</h2>
     <a href="/auth/facebook">Login With Facebook</a>
+    <% places.forEach(function(place){ %>
+        <div class="place-container">
+            <img src=<%=place.picPath%>>
+            <p><%=place.name%></p>
+            <% var avgRating = 0 %>
+            <% var musicCount = 0 %>
+            <% var crowdCount = 0 %>
+
+            <% place.reviews.forEach(function(review){ %>
+                <% avgRating+=review.rating/place.reviews.length; %>
+                <% musicCount+=review.music/place.reviews.length; %>
+                <% crowdCount+=review.crowded/place.reviews.length; %>
+            <%})%>
+
+            <p>Rating: <%=avgRating%></p>
+            <% if (musicCount <1.5){ %>
+                <p>Music Rating: Great</p>
+            <% } else if (musicCount<2.5) {%>
+                <p>Music Rating: Okay</p>
+            <%} else {%>
+                <p>Music Rating: Bad</p>
+            <%}%>
+            
+            <% if (crowdCount <1.5){ %>
+                    <p>Crowd Rating: Too many people</p>
+                <% } else if (musicCount<2.5) {%>
+                    <p>Crowd Rating: The right amount</p>
+                <%} else {%>
+                    <p>Crowd Rating: It's empty</p>
+            <%}%>
+
+        </div>
+    <%})%>
 </body>
 </html>
+

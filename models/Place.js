@@ -5,10 +5,11 @@ const placeSchema = new Schema({
   name: String,
   location: { type: { type: String }, coordinates: [Number] },
   description: String,
-  reactions:[],
+  reviews:[],
   type: String,
   pricing:[],
-  participants: []
+  participants: [],
+  picPath: String
 });
 
 placeSchema.index({ location: '2dsphere' });

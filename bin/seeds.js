@@ -12,11 +12,10 @@ const places = [
   reviews:[{rating: 5, crowded: 1, music: 1, creatorId: 10155234846446892}],
   type: "Salon",
   pricing:[{regular: 0}],
-  participants: []
+  participants: [],
+  picPath: "/images/patanegra.jpg"
   }
 ];
-
-
 
 Place.create(places, (err, docs)=>{
   if (err) { throw err };
