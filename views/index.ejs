@@ -18,8 +18,11 @@
     </div>
     <% places.forEach(function(place){ %>
         <div class="place-container">
-            <img src=<%=place.picPath%>>
-            <p><%=place.name%></p>
+            <figure class="crop-image">
+                <img src=<%=place.picPath%>>
+            </figure>
+            <div class="rating-container">
+            <p class="place-name"><%=place.name%></p>
             <% var avgRating = 0 %>
             <% var musicCount = 0 %>
             <% var crowdCount = 0 %>
@@ -31,22 +34,32 @@
             <%})%>
 
             <p>Rating: <%=avgRating%></p>
+            <% for(var s=0; s<avgRating; s++){%>
+                    <% if (avgRating-1<s){%>
+                         <span class="fas fa-star-half"></span>
+                     <%} else {%>
+                         <span class="fas fa-star"></span>
+                    <% }%>
+                 <%}%>
+            </div>
+            <div class="emotions-container">
+            
             <% if (musicCount <1.5){ %>
-                <p>Music Rating: Great</p>
+                <p>Music: <i style="background-color: gold" class="fas fa-music icon-mus"></i></p>
             <% } else if (musicCount<2.5) {%>
-                <p>Music Rating: Okay</p>
+                <p>Music: <i style="background-color: silver" class="fas fa-music icon-mus"></i></p>
             <%} else {%>
-                <p>Music Rating: Bad</p>
+                <p>Music: <i style="background-color: #cd7f32" class="fas fa-music icon-mus"></i></p>
             <%}%>
             
             <% if (crowdCount <1.5){ %>
-                    <p>Crowd Rating: Too many people</p>
+                    <span>Crowd:</span><img src="images/fullCrowd.png">
                 <% } else if (musicCount<2.5) {%>
-                    <p>Crowd Rating: The right amount</p>
+                    <span>Crowd:</span><img src="images/averageCrowd.png">
                 <%} else {%>
-                    <p>Crowd Rating: It's empty</p>
+                    <span>Crowd:</span><img src="images/empty.png">
             <%}%>
-
+        </div>
         </div>
     <%})%>
 </body>
