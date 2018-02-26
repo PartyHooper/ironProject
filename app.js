@@ -11,6 +11,7 @@ const bcrypt        = require("bcrypt");
 const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const FbStrategy = require('passport-facebook').Strategy;
+const InstagramStrategy = require('passport-instagram').Strategy;
 const flash = require("connect-flash");
 const User = require("./models/User");
 
@@ -56,7 +57,7 @@ passport.use(new FbStrategy({
   clientSecret: "23a2542f53ab00aa94291833e6c48ebd",
   callbackURL: "/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ facebookID: profile.id }, (err, user) => {
+  User.findOne({ provider_id: profile.id }, (err, user) => {
     if (err) {
       return done(err);
     }
@@ -78,6 +79,35 @@ passport.use(new FbStrategy({
   });
 
 }));
+
+passport.use(new InstagramStrategy({
+  clientID: "2240897fb92c4e6cad10c790501ddf01",
+  clientSecret: "3d2fb4fbda8248ffa4abbf6afb06d0fa",
+  callbackURL: "/auth/instagram/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  User.findOne({ provider_id: profile.id }, function (err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      provider_id: profile.id,
+      provider_name: profile.displayName
+    });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+}
+));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -105,6 +135,15 @@ app.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/",
   failureRedirect: "/"
 }));
+app.get('/auth/instagram',
+  passport.authenticate('instagram'));
+
+app.get('/auth/instagram/callback', 
+  passport.authenticate('instagram', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -10,3 +10,7 @@ a {
 .place-container{
   background-color: grey;
 }
+
+.topBar{
+  display: flex;
+}
