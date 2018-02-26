@@ -43,7 +43,7 @@ const places = [
   type: "Salon",
   pricing:[{regular: 0}],
   participants: [],
-  picPath: "/images/Bulldogcafe.jpg"
+  picPath: "/images/Bulldogcafe.jpg"  
   }
 ];
 

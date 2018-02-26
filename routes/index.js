@@ -14,4 +14,15 @@ router.get('/', (req, res, next) => {
   })
 });
 
+router.get('/show', (req, res, next) => {
+  Place.find({}, (err, places)=>{
+    if (err){
+      res.send(err)
+    } else {
+      res.render('show', {places});
+    }
+  })
+});
+
+
 module.exports = router;
