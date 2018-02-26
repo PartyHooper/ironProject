@@ -43,14 +43,20 @@ a {
   justify-content: space-around;
 }
 
+.emotions-container{
+  text-align: center;
+}
 
 .emotions-container img{
   width: 10%;
 }
 
 .icon-mus{
-  text-align: center;
   border-radius: 50%;
-  padding: 14px;
+  padding: 3.55%;
   vertical-align: middle;
+}
+
+#currentContainer{
+  text-align: center;
 }
