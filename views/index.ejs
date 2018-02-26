@@ -13,55 +13,24 @@
 <body>
     <div class="topBar">
         <h2 class="title">Hopper</h2>
-        <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
-        <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+        <% if(!logged){%>
+            <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+            <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+    
+        <%}%>
     </div>
-    <% places.forEach(function(place){ %>
-        <div class="place-container">
-            <figure class="crop-image">
-                <img src=<%=place.picPath%>>
-            </figure>
-            <div class="rating-container">
-            <p class="place-name"><%=place.name%></p>
-            <% var avgRating = 0 %>
-            <% var musicCount = 0 %>
-            <% var crowdCount = 0 %>
+    <div id="currentContainer">
 
-            <% place.reviews.forEach(function(review){ %>
-                <% avgRating+=review.rating/place.reviews.length; %>
-                <% musicCount+=review.music/place.reviews.length; %>
-                <% crowdCount+=review.crowded/place.reviews.length; %>
-            <%})%>
-
-            <p>Rating: <%=avgRating%></p>
-            <% for(var s=0; s<avgRating; s++){%>
-                    <% if (avgRating-1<s){%>
-                         <span class="fas fa-star-half"></span>
-                     <%} else {%>
-                         <span class="fas fa-star"></span>
-                    <% }%>
-                 <%}%>
-            </div>
-            <div class="emotions-container">
-            
-            <% if (musicCount <1.5){ %>
-                <p>Music: <i style="background-color: gold" class="fas fa-music icon-mus"></i></p>
-            <% } else if (musicCount<2.5) {%>
-                <p>Music: <i style="background-color: silver" class="fas fa-music icon-mus"></i></p>
-            <%} else {%>
-                <p>Music: <i style="background-color: #cd7f32" class="fas fa-music icon-mus"></i></p>
-            <%}%>
-            
-            <% if (crowdCount <1.5){ %>
-                    <span>Crowd:</span><img src="images/fullCrowd.png">
-                <% } else if (musicCount<2.5) {%>
-                    <span>Crowd:</span><img src="images/averageCrowd.png">
-                <%} else {%>
-                    <span>Crowd:</span><img src="images/empty.png">
-            <%}%>
-        </div>
-        </div>
-    <%})%>
+    </div>
+    
 </body>
+<script>
+    var placesArray=<%- JSON.stringify(places) %>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkS2ZKYa3xtCIJpDDZxsGbbzjG2Yobrww&libraries=places">
+    </script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
 </html>
 

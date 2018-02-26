@@ -6,6 +6,16 @@ mongoose.connect('mongodb://localhost/partyhooper');
 
 
 const places = [
+  { name: "IronHack CDMX",
+  location: { type: "Point", coordinates: [-99.1716711, 19.3978821] },
+  description: "It's IroHack's Mexico City campus!",
+  reviews:[{rating: 5, crowded: 1, music: 2, creatorId: 10155234846446892}],
+  type: "Bootcamp",
+  pricing:[{regular: 0}],
+  participants: [],
+  picPath: "/images/ironhack.jpeg"
+  },
+
   { name: "Pata Negra",
   location: { type: "Point", coordinates: [-99.2421496, 19.4132875] },
   description: "It's a bar",
