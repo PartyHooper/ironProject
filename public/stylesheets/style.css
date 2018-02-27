@@ -31,6 +31,8 @@ a {
   align-items: center;
   justify-content: space-around;
   background-color: grey;
+  position: fixed;
+  width: 100%;
 }
 
 .topBar img{
@@ -64,4 +66,13 @@ a {
 
 #currentContainer{
   text-align: center;
+  padding-top: 70px;
+}
+
+.logout{
+  margin: 0;
+}
+
+a:hover{
+  text-decoration: none;
 }
