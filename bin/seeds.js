@@ -11,7 +11,7 @@ const places = [
   description: "It's IroHack's Mexico City campus!",
   reviews:[{rating: 5, crowded: 1, music: 2, creatorId: 10155234846446892}],
   type: "Bootcamp",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/ironhack.jpeg",
   schedule:{
@@ -26,7 +26,7 @@ const places = [
   description: "It's a bar",
   reviews:[{rating: 5, crowded: 1, music: 1, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/patanegra.jpg",
   schedule:{
@@ -41,7 +41,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 4.7, crowded: 2, music: 1, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/articbar.png",
   schedule:{
@@ -56,7 +56,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 3.4, crowded: 3, music: 3, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/MamaRumba.jpg",
   schedule:{
@@ -71,7 +71,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/Bulldogcafe.jpg",
   schedule:{
@@ -86,7 +86,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/donquintin.jpg",
   schedule:{
@@ -101,7 +101,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/Presley.jpeg",
   schedule:{
@@ -116,7 +116,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/AMLocal.jpg",
   schedule:{
@@ -131,7 +131,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/eve-condesa.jpg",
   schedule:{
@@ -146,7 +146,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/LaSanta.jpg",
   schedule:{
@@ -161,7 +161,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/Beyork.jpeg",
   schedule:{
@@ -176,7 +176,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/Hyde.jpg",
   schedule:{
@@ -191,7 +191,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/Sens.jpg",
   schedule:{
@@ -206,7 +206,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/asha.png",
   schedule:{
@@ -221,7 +221,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Gay Club",
-  pricing:[{regular: 0}],
+  pricing:[{cover: 0}],
   participants: [],
   picPath: "/images/asha.png",
   schedule:{

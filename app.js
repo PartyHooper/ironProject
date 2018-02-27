@@ -94,6 +94,7 @@ function(accessToken, refreshToken, profile, done) {
     if (user) {
       return done(null, user);
     }
+    console.log(profile)
     const newUser = new User({
       provider_id: profile.id,
       provider_name: profile.displayName,
