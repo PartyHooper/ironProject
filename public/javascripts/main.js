@@ -26,8 +26,8 @@ function startApp(){
             for(var s=0; s<avgRating; s++){
                 if (avgRating-1<s){
                     placeHTML+=`<span class="fas fa-star-half"></span>`
-                 }else {
-                     placeHTML+`<span class="fas fa-star"></span>`
+                 } else {
+                     placeHTML+=`<span class="fas fa-star"></span>`
                 }
              }
             placeHTML+=`<p class="distance">Dist: ${Math.round(distanceKM * 100) / 100}km</p></div>`
