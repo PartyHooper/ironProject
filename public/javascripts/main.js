@@ -8,7 +8,7 @@ function startApp(){
         for (let i=0; i<placesArray.length; i++){
             let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
             let placeHTML = ""
-            placeHTML+=`<div class="place-container">
+            placeHTML+=`<a href="/${placesArray[i]._id}"><div class="place-container">
             <figure class="crop-image">
                 <img src=${placesArray[i].picPath}>
             </figure>
@@ -26,18 +26,18 @@ function startApp(){
             for(var s=0; s<avgRating; s++){
                 if (avgRating-1<s){
                     placeHTML+=`<span class="fas fa-star-half"></span>`
-                 }else {
+                 } else {
                      placeHTML+=`<span class="fas fa-star"></span>`
                 }
              }
             placeHTML+=`<p class="distance">Dist: ${Math.round(distanceKM * 100) / 100}km</p></div>`
             placeHTML+=`<div class="emotions-container">`
             if (musicCount <1.5){
-                placeHTML+=`<span>Music:<img src="images/top40.png"></span>`
+                placeHTML+=`<span>Currently playing:<img src="images/top40.png"></span>`
             } else if (musicCount<2.5) {
-                placeHTML+=`<span>Music: <img src="images/reggaeton.png"></span>`
+                placeHTML+=`<span>Currently playing: <img src="images/reggaeton.png"></span>`
             } else {
-                placeHTML+=`<span>Music: <img src="images/electronic.png"></span>`
+                placeHTML+=`<span>Currently playing: <img src="images/electronic.png"></span>`
             }
             
             if (crowdCount <1.5){
@@ -47,7 +47,7 @@ function startApp(){
                 } else {
                     placeHTML+=`<span>Crowd:<img src="images/empty.png"></span>`
             }
-            placeHTML+="</div></div>"
+            placeHTML+="</div></div></a>"
             distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML});
 
         }

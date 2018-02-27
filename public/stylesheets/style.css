@@ -33,6 +33,11 @@ a {
   background-color: grey;
 }
 
+.topBar img{
+  border-radius: 50%;
+  width: 10%;
+}
+
 .place-name{
   font-weight: bold;
 }

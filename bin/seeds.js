@@ -216,6 +216,21 @@ const places = [
   }
   },
 
+  { name: "Kinky Bar",
+  location: { type: "Point", coordinates: [ -99.166202, 19.427113] },
+  description: "It's an antro",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Gay Club",
+  pricing:[{regular: 0}],
+  participants: [],
+  picPath: "/images/asha.png",
+  schedule:{
+    thursday: {opening: 21, closing: 4},
+    friday: {opening: 21, closing: 4},
+    saturday: {opening: 21, closing: 4}
+  }
+  },
+
 ];
 
 Place.create(places, (err, docs)=>{

@@ -55,7 +55,8 @@ passport.use(new LocalStrategy({passReqToCallback:true},(req, username, password
 passport.use(new FbStrategy({
   clientID: "2004252213161127",
   clientSecret: "23a2542f53ab00aa94291833e6c48ebd",
-  callbackURL: "/auth/facebook/callback"
+  callbackURL: "/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'picture']
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ provider_id: profile.id }, (err, user) => {
     if (err) {
@@ -64,10 +65,10 @@ passport.use(new FbStrategy({
     if (user) {
       return done(null, user);
     }
-
     const newUser = new User({
       provider_id: profile.id,
-      provider_name: profile.displayName
+      provider_name: profile.displayName,
+      picPath: profile.photos[0].value
     });
 
     newUser.save((err) => {
@@ -93,10 +94,10 @@ function(accessToken, refreshToken, profile, done) {
     if (user) {
       return done(null, user);
     }
-
     const newUser = new User({
       provider_id: profile.id,
-      provider_name: profile.displayName
+      provider_name: profile.displayName,
+      picPath: profile._json.data.profile_picture
     });
 
     newUser.save((err) => {
