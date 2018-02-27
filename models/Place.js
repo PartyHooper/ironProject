@@ -7,7 +7,7 @@ const placeSchema = new Schema({
   description: String,
   reviews:[],
   type: String,
-  pricing:[],
+  pricing: Object,
   participants: [],
   picPath: String
 });

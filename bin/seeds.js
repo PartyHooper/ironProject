@@ -8,10 +8,10 @@ mongoose.connect('mongodb://localhost/partyhooper');
 const places = [
   { name: "IronHack CDMX",
   location: { type: "Point", coordinates: [-99.1716711, 19.3978821] },
-  description: "It's IroHack's Mexico City campus!",
+  description: "It's IronHack's Mexico City campus!",
   reviews:[{rating: 5, crowded: 1, music: 2, creatorId: 10155234846446892}],
   type: "Bootcamp",
-  pricing:[{regular: 0}],
+  pricing:{cover: 100},
   participants: [],
   picPath: "/images/ironhack.jpeg"
   },
@@ -21,7 +21,7 @@ const places = [
   description: "It's a bar",
   reviews:[{rating: 5, crowded: 1, music: 1, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:{cover: 150},
   participants: [],
   picPath: "/images/patanegra.jpg"
   },
@@ -31,7 +31,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 4.7, crowded: 2, music: 1, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:{cover: 30},
   participants: [],
   picPath: "/images/articbar.png"
   },
@@ -41,7 +41,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 3.4, crowded: 3, music: 3, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:{cover: 0},
   participants: [],
   picPath: "/images/MamaRumba.jpg"
   },
@@ -51,7 +51,7 @@ const places = [
   description: "It's an antro",
   reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
   type: "Salon",
-  pricing:[{regular: 0}],
+  pricing:{cover: 0},
   participants: [],
   picPath: "/images/Bulldogcafe.jpg"  
   }
