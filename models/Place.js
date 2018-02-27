@@ -9,7 +9,8 @@ const placeSchema = new Schema({
   type: String,
   pricing: Object,
   participants: [],
-  picPath: String
+  picPath: String,
+  schedule: Object
 });
 
 
