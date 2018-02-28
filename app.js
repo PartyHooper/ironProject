@@ -63,7 +63,15 @@ passport.use(new FbStrategy({
       return done(err);
     }
     if (user) {
-      return done(null, user);
+      
+      user.provider_name= profile.displayName,
+      user.picPath= profile.photos[0].value
+      user.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        return done(null, user);
+      });
     }
     const newUser = new User({
       provider_id: profile.id,
@@ -92,7 +100,14 @@ function(accessToken, refreshToken, profile, done) {
       return done(err);
     }
     if (user) {
-      return done(null, user);
+      user.provider_name= profile.displayName,
+      user.picPath= profile._json.data.profile_picture
+      user.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        return done(null, user);
+     });
     }
     console.log(profile)
     const newUser = new User({

@@ -49,14 +49,14 @@ function startApp(){
                     placeHTML+=`<span>Crowd:<img src="images/empty.png"></span>`
             }
             placeHTML+="</div></div></a>"
-            distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML});
+            distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML, id: placesArray[i]._id});
 
         }
         distanceArray.sort(function(a,b){
             return a.distance-b.distance;
         })
         if (distanceArray[0].distance<0.1){
-            let current = "<p>It looks like you are in "+distanceArray[0].name+"</p><p>Tell us how it is!</p>";
+            let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are in "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
             document.getElementById("currentContainer").innerHTML=current
         }
         distanceArray.forEach(function(element){

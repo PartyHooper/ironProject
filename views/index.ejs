@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="topBar">
-        <h2 class="title">Hopper</h2>
+        <a href="/"><h2 class="title">Hopper</h2></a>
         <% if(!logged){%>
             <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
             <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
         <%} else {%>
             <img class="profilePic" src=<%=user.picPath%>>
             <span>Welcome <%=user.provider_name%></span>
-            <a href="/logout"><p>Logout</p></a>
+            <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
     </div>
     <div id="currentContainer">
