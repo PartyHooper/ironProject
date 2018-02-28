@@ -24,19 +24,19 @@
               <div class="carousel-inner">
                 <div class="item active">
                 <figure class="imgcontainer">
-                  <img class="carrusel" src="images/articbar.png" alt="Los Angeles">
+                  <img class="carrusel" src="/images/articbar.png" alt="Los Angeles">
                 </figure>
                 </div>
           
                 <div class="item">
                 <figure class="imgcontainer">
-                  <img class="carrusel" src="images/artic-bar-medium.png" alt="Chicago">
+                  <img class="carrusel" src="/images/artic-bar-medium.png" alt="Chicago">
                 </figure>
                 </div>
               
                 <div class="item">
                 <figure class="imgcontainer">
-                  <img class="carrusel" src="images/reviewartic.jpg" alt="New york">
+                  <img class="carrusel" src="/images/reviewartic.jpg" alt="New york">
                 </figure>
                 </div>
               </div>
@@ -51,24 +51,35 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-          </div>
-          
-          </body>
-       <h2>Descripción</h2>
+            <br>
        <ul>
-           <li>Dia de Servicio: Jueves, Viernes y Sabado</li>
-           <li>Horario: De 10pm a 4am</li>
+           <% for (var i=Object.keys(place.schedule).length-1; i>=0; i--){%>
+              <li><%=Object.keys(place.schedule)[i]%> : <%=place.schedule[Object.keys(place.schedule)[i]].opening%> to <%=place.schedule[Object.keys(place.schedule)[i]].closing%></li>
+           <%}%>
            <li>Historia: <%=place.description%></li>
            <li>Tipo: <%=place.type%></li>
+           <li>Cover: <%=place.pricing.cover%></li>
        </ul>
-    </div>
-    <div>
-        <h3>Cover: <%=place.pricing.cover%></h3>
     </div>
     <div class="review-container">
       <% place.reviews.forEach(function(review){%>
         <div class="review">
-          <p><%= review.rating %></p>
+          <img src=<%=review.creatorPicPath%>>
+          <strong><%=review.creatorName%> rated: <%= review.rating %>/5</strong>
+          <% if (review.music==1){ %>
+              <img src="/images/top40.png">
+          <%} else if (review.music==2){%>
+            <img src="/images/reggaeton.png">
+            <%} else if (review.music==3){%>
+              <img src="/images/electronic.png">
+            <%}%>
+            <% if (review.crowded==1){ %>
+              <img src="/images/fullCrowd.png">
+          <%} else if (review.crowded==2){%>
+            <img src="/images/averageCrowd.png">
+            <%} else if (review.crowded==3){%>
+              <img src="/images/empty.png">
+            <%}%>
         </div>
       <%})%>
     </div>
