@@ -66,6 +66,7 @@ a {
 
 #currentContainer{
   text-align: center;
+  padding-top: 70px;
 }
 
 /* Add a black background color to the top navigation bar */
@@ -88,7 +89,7 @@ a {
 #search{
   height: 32px;
   width: 60px;
-  padding-top: 70px;
+  /* padding-top: 70px; */
 }
 
 .logout{
@@ -97,4 +98,7 @@ a {
 
 a:hover{
   text-decoration: none;
+}
+#myForm{
+  padding-top: 15px
 }
