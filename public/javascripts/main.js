@@ -1,10 +1,11 @@
+let distanceArray=[]
 function startApp(){
     navigator.geolocation.getCurrentPosition(function (position) {
         const center = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        let distanceArray=[]
+        distanceArray=[]
         for (let i=0; i<placesArray.length; i++){
             let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
             let placeHTML = ""

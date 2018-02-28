@@ -223,11 +223,222 @@ const places = [
   type: "Gay Club",
   pricing:[{cover: 0}],
   participants: [],
-  picPath: "/images/asha.png",
+  picPath: "/images/Kinky.jpg",
   schedule:{
     thursday: {opening: 21, closing: 4},
     friday: {opening: 21, closing: 4},
     saturday: {opening: 21, closing: 4}
+  }
+  },
+
+  { name: "Mambocafe",
+  location: { type: "Point", coordinates: [  -99.171552, 19.395405] },
+  description: "It's an antro",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/mambo.jpg",
+  schedule:{
+    thursday: {opening: 21, closing: 4},
+    friday: {opening: 21, closing: 4},
+    saturday: {opening: 21, closing: 4}
+  }
+  },
+
+  { name: "Patrick Miller",
+  location: { type: "Point", coordinates: [ -99.158964, 19.423929] },
+  description: "It's an antro",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/Patrick.jpg",
+  schedule:{
+    thursday: {opening: 21, closing: 4},
+    friday: {opening: 21, closing: 4},
+    saturday: {opening: 21, closing: 4}
+  }
+  },
+
+  { name: "Limantour",
+  location: { type: "Point", coordinates: [ -99.197007, 19.430340] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/limantourbar.png",
+  schedule:{
+    monday:{opening: 17, closing: 23},
+    tusday:{opening: 17, closing: 2},
+    wednesday:{opening: 17, closing: 2},
+    thursday: {opening: 16.30, closing: 2},
+    friday: {opening: 16.30, closing: 2}
+  }
+  },
+
+  { name: "Sixtie's",
+  location: { type: "Point", coordinates: [-99.166559, 19.412978] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/sixties.jpg",
+  schedule:{
+    monday:{opening: 13, closing: 2},
+    tusday:{opening: 13, closing: 2},
+    wednesday:{opening: 13, closing: 2},
+    thursday: {opening: 13, closing: 2},
+    friday: {opening: 13, closing: 2},
+    saturday:{opening: 13, closing: 2}
+  }
+  },
+
+  { name: "Kings Pub Condesa",
+  location: { type: "Point", coordinates: [-99.171952, 19.411840] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/kingspub.jpg",
+  schedule:{
+    monday:{opening: 13, closing: 2},
+    tusday:{opening: 13, closing: 2},
+    wednesday:{opening: 13, closing: 2},
+    thursday: {opening: 13, closing: 2},
+    friday: {opening: 13, closing: 2},
+    saturday:{opening: 13, closing: 2}
+  }
+  },
+
+  { name: "Irish Pub Polanco",
+  location: { type: "Point", coordinates: [-99.183637, 19.431614] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/irish.jpg",
+  schedule:{
+    monday:{opening: 13, closing: 3},
+    tusday:{opening: 13, closing: 3},
+    wednesday:{opening: 13, closing: 3},
+    thursday: {opening: 13, closing: 3},
+    friday: {opening: 13, closing: 3},
+    saturday:{opening: 13, closing: 3}
+  }
+  },
+
+  { name: "La Chilanguita Insurgentes",
+  location: { type: "Point", coordinates: [-99.174924, 19.387228] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/chilanguita.jpg",
+  schedule:{
+    monday:{opening: 13, closing: 2},
+    tusday:{opening: 13, closing: 2},
+    wednesday:{opening: 13, closing: 2},
+    thursday: {opening: 13, closing: 2},
+    friday: {opening: 13, closing: 2},
+    saturday:{opening: 13, closing: 2}
+  }
+  },
+
+  { name: "El Jaibol Pericoapa",
+  location: { type: "Point", coordinates: [-99.125269, 19.303126] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/Jaibol.jpg",
+  schedule:{
+    monday:{opening: 12, closing: 1},
+    tusday:{opening: 12, closing: 1},
+    wednesday:{opening: 12, closing: 1},
+    thursday: {opening: 12, closing: 1},
+    friday: {opening: 12, closing: 1},
+    saturday:{opening: 12, closing: 1}
+  }
+  },
+
+  { name: "Fe de ciegos",
+  location: { type: "Point", coordinates: [ -99.108174, 19.310622] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/fedeciegos.jpeg",
+  schedule:{
+    monday:{opening: 13, closing: 2},
+    tusday:{opening: 13, closing: 2},
+    wednesday:{opening: 13, closing: 2},
+    thursday: {opening: 13, closing: 2},
+    friday: {opening: 13, closing: 2},
+    saturday:{opening: 13, closing: 2}
+  }
+  },
+
+  { name: "Beer Factory",
+  location: { type: "Point", coordinates: [ -99.181913, 19.298521] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/beerfactoryC.jpg",
+  schedule:{
+    monday:{opening: 12, closing: 24},
+    tusday:{opening: 12, closing: 24},
+    wednesday:{opening: 12, closing: 24},
+    thursday: {opening: 12, closing: 24},
+    friday: {opening: 12, closing: 2},
+    saturday:{opening: 12, closing: 2},
+    sunday:{opening: 12, closing: 22}
+  }
+  },
+
+  { name: "Terraza Madero",
+  location: { type: "Point", coordinates: [ -99.138852, 19.433961] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/terrazamadero.jpg",
+  schedule:{
+    monday:{opening: 13, closing: 21.30},
+    tusday:{opening: 11, closing: 1.30},
+    wednesday:{opening: 11, closing: 1.30},
+    thursday: {opening: 11, closing: 1.30},
+    friday: {opening: 11, closing: 1.30},
+    saturday:{opening: 11, closing: 1.30}
+  }
+  },
+
+  { name: "El depósito",
+  location: { type: "Point", coordinates: [ -99.187768, 19.346115] },
+  description: "It's a bar",
+  reviews:[{rating: 5, crowded: 3, music: 2, creatorId: 10155234846446892}],
+  type: "Salon",
+  pricing:[{cover: 0}],
+  participants: [],
+  picPath: "/images/deposito.jpg",
+  schedule:{
+    monday:{opening: 12, closing: 24},
+    tusday:{opening: 12, closing: 24},
+    wednesday:{opening: 12, closing: 24},
+    thursday: {opening: 12, closing: 2},
+    friday: {opening: 12, closing: 2},
+    saturday:{opening: 12, closing: 2},
+    sunday:{opening: 12, closing: 22}
   }
   },
 
