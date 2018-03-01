@@ -33,9 +33,9 @@ function startApp(){
                     musicCount.push({genre: review.music, count: 1})
                 }
             })
-            musicCount.sort(function(a,b){
-                return b.count - a.count;
-            })
+            // musicCount.sort(function(a,b){
+            //     return b.count - a.count;
+            // })
             if (placesArray[i].reviews.length>0){
             placeHTML+=`<p>Night Rating: ${avgRating}</p>`
             for(var s=0; s<avgRating; s++){
