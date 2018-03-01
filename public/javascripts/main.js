@@ -16,13 +16,26 @@ function startApp(){
             <div class="rating-container">
             <p class="place-name">${placesArray[i].name}</p>`
             let avgRating = 0
-            let musicCount = 0
+            let musicCount = []
             let crowdCount = 0
             placesArray[i].reviews.forEach(function(review){
                 avgRating+=review.rating/placesArray[i].reviews.length;
-                musicCount+=review.music/placesArray[i].reviews.length; 
                 crowdCount+=review.crowded/placesArray[i].reviews.length;
+                let exists=false;
+                musicCount.map(function(music){
+                    if (music.genre===review.music){
+                        music.count++;
+                        exists=true;
+                    }
+                })
+                if (!exists){
+                    musicCount.push({genre: review.music, count: 1})
+                }
             })
+            musicCount.sort(function(a,b){
+                return b.count - a.count;
+            })
+            if (placesArray[i].reviews.length>0){
             placeHTML+=`<p>Night Rating: ${avgRating}</p>`
             for(var s=0; s<avgRating; s++){
                 if (avgRating-1<s){
@@ -31,24 +44,24 @@ function startApp(){
                      placeHTML+=`<span class="fas fa-star"></span>`
                 }
              }
-            placeHTML+=`<p class="distance">Dist: ${Math.round(distanceKM * 100) / 100}km</p></div>`
-            placeHTML+=`<div class="emotions-container">`
-            if (musicCount <1.5){
-                placeHTML+=`<span>Currently playing:<img src="images/top40.png"></span>`
-            } else if (musicCount<2.5) {
-                placeHTML+=`<span>Currently playing: <img src="images/reggaeton.png"></span>`
             } else {
-                placeHTML+=`<span>Currently playing: <img src="images/electronic.png"></span>`
+                placeHTML+=`<p>No reviews yet</p>`
             }
+            placeHTML+=`<p class="distance">Dist: ${Math.round(distanceKM * 100) / 100}km</p></div>`
+            if (placesArray[i].reviews.length>0){
+            placeHTML+=`<div class="emotions-container">`
+            placeHTML+=`<span>Currently playing:<img src="images/${musicCount[0].genre}.png"></span>`
             
             if (crowdCount <1.5){
                 placeHTML+=`<span>Crowd:<img src="images/fullCrowd.png"></span>`
-                } else if (musicCount<2.5) {
+                } else if (crowdCount<2.5) {
                     placeHTML+=`<span>Crowd:<img src="images/averageCrowd.png"></span>`
                 } else {
                     placeHTML+=`<span>Crowd:<img src="images/empty.png"></span>`
             }
-            placeHTML+="</div></div></a>"
+            placeHTML+="</div>"
+            }
+            placeHTML+="</div></a>"
             distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML, id: placesArray[i]._id});
 
         }
@@ -62,6 +75,7 @@ function startApp(){
         distanceArray.forEach(function(element){
             document.getElementsByTagName("body")[0].innerHTML+=element.html;
         })
+        $("#loading").hide();
       });
   }
 
