@@ -71,13 +71,13 @@
             <% for(var s=0; s<avgRating; s++){%>
                <% if (avgRating-1<s){ %>
              <span class="fas fa-star-half"></span>
-                 } else {
+                 <%} else {%>
                    <span class="fas fa-star"></span>
-                }
-             }
-            } else {
+               <% }%>
+           <%  }%>
+            <%} else {%>
               <p>No updates yet</p>
-            }
+          <%  }%>
         <%})%>
         </div>
   <img id="loading" src="/images/loading.png" alt="">  
