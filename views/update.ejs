@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Detail</title>
+</head>
+<body>
+        <div class="topBar">
+                <a href="/"><h2 class="title">Skryer</h2></a>
+                <% if(!logged){%>
+                    <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+                    <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+                <%} else {%>
+                    <img class="profilePic" src=<%=user.picPath%>>
+                    <span>Welcome <%=user.provider_name%></span>
+                    <a href="/logout"><p class="logout">Logout</p></a>
+                <% } %>
+              </div>
+    <div id="currentContainer">
+    <h1><%=place.name%></h1>
+    <form action=<%="/"+place._id+"/update/"+review._id%> method="post" enctype="multipart/form-data">
+        <p>How would you rate it?</p>
+        <input name="rating" type="number" min="1" max="5" required>
+        <p>What kind of music is playing now?</p>
+        <br>
+        <input type='radio' name='music' value="reggaeton" id="reggaeton"/><label for="reggaeton"><img src="/images/reggaeton.png"></label>
+        <input type='radio' name='music' value="electronic" id="electronic"/><label for="electronic"><img src="/images/electronic.png"></label>
+        <input type='radio' name='music' value="top40" id="top40"/><label for="top40"><img src="/images/top40.png"></label>
+        <br>
+        <p>How crowded is it now?</p>
+        <br>
+        <input type='radio' name='crowd' value="3" id="empty"/><label for="empty"><img src="/images/empty.png"></label>
+        <input type='radio' name='crowd' value="2" id="average"/><label for="average"><img src="/images/averageCrowd.png"></label>
+        <input type='radio' name='crowd' value="1" id="full"/><label for="full"><img src="/images/fullCrowd.png"></label>
+        <br>
+        <p>Add a live picture!</p>
+        <br>
+        <input id="image" type="file" name="photo" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="And done!">
+    </form>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>

@@ -8,7 +8,8 @@ const reviewSchema = new Schema({
   rating: Number,
   music: String,
   crowded: String,
-  picPath: String
+  picPath: String,
+  date: Date
 }, {
     timestamps:{
         createdAt: "created_at",

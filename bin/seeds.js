@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Place = require('../models/Place');
 
-mongoose.connect('mongodb://localhost/partyhooper');
+mongoose.connect('mongodb://fixter:fixter@ds129146.mlab.com:29146/togomx');
 
 
 const places = [

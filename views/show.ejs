@@ -90,7 +90,12 @@
       <% place.reviews.forEach(function(review){%>
         <div class="review">
           <img src=<%=review.creatorPicPath%>>
-          <strong><%=review.creatorName%> rated: <%= review.rating %>/5</strong>
+          <strong><%=review.creatorName%> rated: <%= review.rating %>/5 at 
+             <% if(review.updated_at.getMinutes()<10){%>
+                <%=review.updated_at.getHours()%>:0<%=review.updated_at.getMinutes()%></strong>
+             <%} else{%>
+              <%=review.updated_at.getHours()%>:<%=review.updated_at.getMinutes()%></strong>
+              <%}%>
               <img src=<%="/images/"+review.music+".png"%>>
             <% if (review.crowded==1){ %>
               <img src="/images/fullCrowd.png">
@@ -99,6 +104,9 @@
             <%} else if (review.crowded==3){%>
               <img src="/images/empty.png">
             <%}%>
+            <% if(logged && review.creatorId===user.provider_id){%>
+              <a href=<%="/"+place._id+"/update/"+review._id%>><button>Update</button></a><a href=<%="/"+place._id+"/delete/"+review._id%>><button>Delete</button></a
+             <%}%>
         </div>
       <%})%>
     </div>

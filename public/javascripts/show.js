@@ -33,7 +33,7 @@ function showTotal(){
         }
      }
     } else {
-        placeHTML+=`<p>No reviews yet</p>`
+        placeHTML+=`<p>No updates yet</p>`
     }
     placeHTML+=`</div>`
     if (place.reviews.length>0){

@@ -5,9 +5,10 @@ const Place = require('../models/Place');
 const User = require("../models/User");
 const Review = require("../models/Review");
 const passport      = require("passport");
+const dateFormat = require('dateformat');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-var upload = multer({ dest: './public/images/' });
+const upload = multer({ dest: './public/images/' });
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -37,7 +38,7 @@ router.get("/logout", (req, res, next) => {
   } else {
     res.redirect("/");
   }
-})
+});
 
 router.post("/search", (req, res, next)=>{
 
@@ -54,14 +55,15 @@ router.post("/search", (req, res, next)=>{
     }
   })
 
-})
+});
+
 router.get("/login", (req, res, next) => {
   if (req.user){
    res.redirect("/");
   } else {
     res.render("login", {logged: false})
   }
-})
+});
 
 router.get('/user', (req, res, next) => {
   if (req.user){
@@ -93,6 +95,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', upload.single('photo'), (req, res, next) => {
+  
   const review = new Review({
     creatorId: req.user.provider_id,
     creatorPicPath: req.user.picPath,
@@ -100,10 +103,11 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
     creatorName: req.user.provider_name,
     rating: req.body.rating,
     crowded: req.body.crowd,
-    music: req.body.music
+    music: req.body.music,
+    date: new Date ()
   });
-
   
+   
   review.save((err) => {
     Place.findById(req.params.id, (error, place) => {
         if (error) {
@@ -129,19 +133,99 @@ router.get("/:id/review", ensureLoggedIn(), (req, res, next)=>{
     if (err){
       res.send(err)
     } else {
-      if (err){
-        res.send(err)
-      } else { 
         if (req.user){
           res.render('review', {place, logged: true, user: req.user});
         } else{
           res.render('review', {place, logged: false});
         }
       }
+  })
+});
+
+router.get("/:id/update/:reviewid", ensureLoggedIn(),(req, res, next)=>{
+  Place.findOne({_id:req.params.id}, (err, place)=>{
+    if (err){
+      res.send(err)
+    } else {
+        Review.findOne({_id:req.params.reviewid}, (error, review)=>{
+          if (error){
+            res.send(error)
+          } else {
+              if (req.user){
+                res.render('update', {place, logged: true, user: req.user, review});
+              } else {
+                res.render('update', {place, logged: false, review});
+              }
+            }
+        })
     }
   })
-})
+});
 
+router.post("/:id/update/:reviewid", upload.single('photo'), (req, res, next) => {
+  Review.findOne({_id:req.params.reviewid}, (error, review)=>{
+    if (error){
+      res.send(error)
+    } else {
+          review.picPath= `/images/${req.file.filename}`;
+          review.rating= req.body.rating,
+          review.crowded= req.body.crowd,
+          review.music= req.body.music,
+          review.date= new Date ()
+          review.save((err) => {
+            Place.findById(req.params.id, (error, place) => {
+                if (error) {
+                    next(error);
+                } else {
+                  let array=[] 
+                  place.reviews.forEach(function(rev, index){
+                    if (rev._id==req.params.reviewid){
+                      array.push(review);
+                    } else {
+                      array.push(rev)
+                    }
+                  })
+                  place.reviews= array;
+                  place.save((error) => {
+                      if (error) {
+                          next(error);
+                      } else {
+                          res.redirect('/'+req.params.id);
+                      }
+                  })
+                }
+            })
+          });
+      }
+  })
+});
+
+<<<<<<< HEAD
+=======
+router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => {
+            Place.findById(req.params.id, (error, place) => {
+                if (error) {
+                    next(error);
+                } else {
+                  let array=[] 
+                  place.reviews.forEach(function(rev, index){
+                    if (rev._id!=req.params.reviewid){
+                      array.push(rev)
+                    }
+                  })
+                  place.reviews= array;
+                  console.log(place)
+                  place.save((error) => {
+                      if (error) {
+                          next(error);
+                      } else {
+                          res.redirect('/'+req.params.id);
+                      }
+                  })
+                }
+            })
+          });
+>>>>>>> 3fa4c221a25b20ab3f70f771ae538734d95c93a2
 
 
 module.exports = router;

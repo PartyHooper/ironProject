@@ -45,7 +45,7 @@ function startApp(){
                 }
              }
             } else {
-                placeHTML+=`<p>No reviews yet</p>`
+                placeHTML+=`<p>No updates yet</p>`
             }
             placeHTML+=`<p class="distance">Dist: ${Math.round(distanceKM * 100) / 100}km</p></div>`
             if (placesArray[i].reviews.length>0){
@@ -69,7 +69,7 @@ function startApp(){
             return a.distance-b.distance;
         })
         if (distanceArray[0].distance<0.1){
-            let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are in "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
+            let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are at "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
             document.getElementById("currentContainer").innerHTML=current
         }
         distanceArray.forEach(function(element){
