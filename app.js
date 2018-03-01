@@ -56,7 +56,7 @@ passport.use(new FbStrategy({
   clientID: "2004252213161127",
   clientSecret: "23a2542f53ab00aa94291833e6c48ebd",
   callbackURL: "/auth/facebook/callback",
-  profileFields: ['id', 'displayName', 'picture']
+  profileFields: ['id', 'displayName', 'picture', 'friends']
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ provider_id: profile.id }, (err, user) => {
     if (err) {
@@ -72,19 +72,22 @@ passport.use(new FbStrategy({
         }
         return done(null, user);
       });
+    } else {
+      console.log(profile._json.friends.data)
+      const newUser = new User({
+        provider_id: profile.id,
+        provider_name: profile.displayName,
+        picPath: profile.photos[0].value
+      });
+  
+      newUser.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        done(null, newUser);
+      });
     }
-    const newUser = new User({
-      provider_id: profile.id,
-      provider_name: profile.displayName,
-      picPath: profile.photos[0].value
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
+    
   });
 
 }));
@@ -108,20 +111,21 @@ function(accessToken, refreshToken, profile, done) {
         }
         return done(null, user);
      });
+    } else {
+      console.log(profile)
+      const newUser = new User({
+        provider_id: profile.id,
+        provider_name: profile.displayName,
+        picPath: profile._json.data.profile_picture
+      });
+  
+      newUser.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        done(null, newUser);
+      });
     }
-    console.log(profile)
-    const newUser = new User({
-      provider_id: profile.id,
-      provider_name: profile.displayName,
-      picPath: profile._json.data.profile_picture
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
   });
 }
 ));
@@ -147,7 +151,7 @@ app.use(layouts);
 
 const index = require('./routes/index');
 app.use('/', index);
-app.get("/auth/facebook", passport.authenticate("facebook"));
+app.get("/auth/facebook", passport.authenticate("facebook", { scope: ['user_friends'] }));
 app.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/",
   failureRedirect: "/"

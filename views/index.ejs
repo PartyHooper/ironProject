@@ -22,8 +22,7 @@
             <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
     </div>
-    <div id="currentContainer">
-    </div>
+    
 <!-- Search and filter -->
     <form id="myForm" action="/search" method="post">
         <div class="topnav">
@@ -41,7 +40,9 @@
             </button>	
         </div>  
     </form>
-  <img id="loading" src="/images/Sens.jpg" alt="">  
+    <div id="currentContainer">
+        </div>
+  <img id="loading" src="/images/loading.png" alt="">  
 </body>
 <script>
     var placesArray=<%- JSON.stringify(places) %>
