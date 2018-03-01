@@ -40,7 +40,7 @@
             </button>	
         </div>  
     </form>
-    <a href=<%='/'+places[0]._id+"/review"%>><p>It looks like you are at <%=places[0].name%></p><p>Tell us how it is!</p></a>
+    <a href=<%='/'+places[places.length-1]._id+"/review"%>><p>It looks like you are at <%=places[places.length-1].name%></p><p>Tell us how it is!</p></a>
     <div id="currentContainer">
         <% places.forEach(function(place){%>
             <a href=<%="/"+place._id%>><div class="place-container">
