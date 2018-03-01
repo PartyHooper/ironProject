@@ -24,25 +24,34 @@
     </div>
     <div id="currentContainer">
     </div>
-    
-    <form id="myForm">
+<!-- Search and filter -->
+    <form id="myForm" action="/search" method="post">
         <div class="topnav">
-            <input type="text" placeholder="Lugar..">
-            <button id="search" type="submit">
-                Buscar
+                <input list="places" name="place">
+            <datalist id="places" >
+                <%places.forEach(function(place){%>
+                     <option value="<%=place.name%>">
+                <%})%>
+              </datalist>
+            <input type ="submit" id="searchInput" value="Buscar">
+            <!-- <input  type="button" id="searchInput" value="Buscar"/> -->
+            <button id="filter" type="menu">
+               <p> Filtrar</p>
+               <img width="20px" src="images/filtro.png" alt="filtro">
             </button>	
-        </div>
+        </div>  
     </form>
     
 </body>
 <script>
     var placesArray=<%- JSON.stringify(places) %>
+    console.log(placesArray);
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkS2ZKYa3xtCIJpDDZxsGbbzjG2Yobrww&libraries=places">
     </script>
-  <script type="text/javascript" src="/javascripts/main.js"></script>
-  <script type="text/javascript" src="/javascripts/search.js"></script>
+
+<script type="text/javascript" src="/javascripts/main.js"></script>
 </html>
 

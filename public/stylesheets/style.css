@@ -86,7 +86,7 @@ a {
   font-size: 17px;
 }
 
-#search{
+#searchInput{
   height: 32px;
   width: 60px;
   /* padding-top: 70px; */
@@ -100,5 +100,22 @@ a:hover{
   text-decoration: none;
 }
 #myForm{
+  background-color: dimgrey;
+  display: flex;
+  flex-wrap: wrap;  
   padding-top: 15px
+
+}
+
+.topnav{
+  background-color: dimgray
+}
+
+#filter {
+  background-color: rgb(26, 212, 26);
+  display: flex;
+  float: right;
+  width: 80px;
+  height: 27px;
+  margin-left: 20px
 }
