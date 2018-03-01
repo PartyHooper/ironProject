@@ -17,7 +17,9 @@
             <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
             <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
         <%} else {%>
-            <img class="profilePic" src=<%=user.picPath%>>
+            <a href="/user">
+           <img class="profilePic" src=<%=user.picPath%>
+            </a>
             <span>Welcome <%=user.provider_name%></span>
             <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
