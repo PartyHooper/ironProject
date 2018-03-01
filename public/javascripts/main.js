@@ -66,9 +66,9 @@ function startApp(){
             distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML, id: placesArray[i]._id});
 
         }
-        distanceArray.sort(function(a,b){
-            return a.distance-b.distance;
-        })
+        // distanceArray.sort(function(a,b){
+        //     return a.distance-b.distance;
+        // })
         if (distanceArray[0].distance<0.1){
             let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are at "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
             document.getElementById("currentContainer").innerHTML=current
@@ -82,21 +82,21 @@ function startApp(){
 
   startApp()
   
-  function degreesToRadians(degrees) {
-    return degrees * Math.PI / 180;
-  }
+//   function degreesToRadians(degrees) {
+//     return degrees * Math.PI / 180;
+//   }
   
-  function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
-    const earthRadiusKm = 6371;
+//   function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
+//     const earthRadiusKm = 6371;
   
-    let dLat = degreesToRadians(lat2-lat1);
-    let dLon = degreesToRadians(lon2-lon1);
+//     let dLat = degreesToRadians(lat2-lat1);
+//     let dLon = degreesToRadians(lon2-lon1);
   
-    lat1 = degreesToRadians(lat1);
-    lat2 = degreesToRadians(lat2);
+//     lat1 = degreesToRadians(lat1);
+//     lat2 = degreesToRadians(lat2);
   
-    let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    return earthRadiusKm * c;
-  }
+//     let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+//             Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+//     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+//     return earthRadiusKm * c;
+//   }
