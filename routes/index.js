@@ -39,6 +39,16 @@ router.get("/logout", (req, res, next) => {
   }
 })
 
+router.post("/search", (req, res, next)=>{
+  console.log(req.body)
+  Place.findOne({name:req.body.place}, (err, place)=>{
+    console.log(place)
+    if (!place){
+      res.redirect("/")
+    } else {
+      res.render('show', {place});
+    }
+  })
 router.get("/login", (req, res, next) => {
   if (req.user){
    res.redirect("/");
