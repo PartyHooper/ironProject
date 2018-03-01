@@ -28,7 +28,6 @@ router.get('/', (req, res, next) => {
       }
     })
   }
-  
 });
 
 router.get("/logout", (req, res, next) => {
@@ -40,12 +39,24 @@ router.get("/logout", (req, res, next) => {
   }
 })
 
+router.get("/login", (req, res, next) => {
+  if (req.user){
+   res.redirect("/");
+  } else {
+    res.render("login", {logged: false})
+  }
+})
+
 router.get('/:id', (req, res, next) => {
   Place.findOne({_id:req.params.id}, (err, place)=>{
     if (err){
       res.send(err)
-    } else {
-      res.render('show', {place});
+    } else { 
+      if (req.user){
+        res.render('show', {place, logged: true, user: req.user});
+      } else{
+        res.render('show', {place, logged: false});
+      }
     }
   })
 });
@@ -57,16 +68,9 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
     picPath: `/images/${req.file.filename}`,
     creatorName: req.user.provider_name,
     rating: req.body.rating,
-    crowded: req.body.crowd
+    crowded: req.body.crowd,
+    music: req.body.music
   });
-
-  if (req.body.reggaeton){
-    review.music=3;
-  } else if (req.body.electronic){
-    review.music=2;
-  } else if (req.body.top40){
-    review.music=1;
-  }
 
   
   review.save((err) => {
@@ -94,7 +98,15 @@ router.get("/:id/review", ensureLoggedIn(), (req, res, next)=>{
     if (err){
       res.send(err)
     } else {
-      res.render('review', {place});
+      if (err){
+        res.send(err)
+      } else { 
+        if (req.user){
+          res.render('review', {place, logged: true, user: req.user});
+        } else{
+          res.render('review', {place, logged: false});
+        }
+      }
     }
   })
 })

@@ -54,6 +54,14 @@ a {
   text-align: center;
 }
 
+.emotions-container span{
+  margin: 0 5px;
+}
+
+.emotions-container p{
+  display: inline;
+}
+
 .emotions-container img{
   width: 10%;
 }
@@ -67,6 +75,31 @@ a {
 #currentContainer{
   text-align: center;
   padding-top: 70px;
+}
+
+.login-container{
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.login-container div{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#totalReview{
+  background-color: green;
+  padding: 5px 0;
+  margin: 10px 5%;
+  border-radius: 10px;
+}
+
+#noReview img{
+  width: 100%;
 }
 
 /* Add a black background color to the top navigation bar */
@@ -102,3 +135,4 @@ a:hover{
 #myForm{
   padding-top: 15px
 }
+
