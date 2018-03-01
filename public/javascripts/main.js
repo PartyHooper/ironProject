@@ -7,7 +7,8 @@ function startApp(){
         };
         distanceArray=[]
         for (let i=0; i<placesArray.length; i++){
-            let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
+            // let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
+            let distanceKM=0.05
             let placeHTML = ""
             placeHTML+=`<a href="/${placesArray[i]._id}"><div class="place-container">
             <figure class="crop-image">
