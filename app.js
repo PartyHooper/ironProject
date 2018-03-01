@@ -16,7 +16,7 @@ const flash = require("connect-flash");
 const User = require("./models/User");
 
 
-mongoose.connect('mongodb://localhost/partyhooper');
+mongoose.connect('mongodb://fixter:fixter@ds129146.mlab.com:29146/togomx');
 
 const app = express();
 
