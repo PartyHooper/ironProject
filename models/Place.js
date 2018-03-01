@@ -1,0 +1,20 @@
+const mongoose     = require('mongoose');
+const Schema       = mongoose.Schema;
+
+const placeSchema = new Schema({
+  name: String,
+  location: { type: { type: String }, coordinates: [Number] },
+  description: String,
+  reviews:[],
+  type: String,
+  pricing: Object,
+  participants: [],
+  picPath: String,
+  schedule: Object
+});
+
+
+
+placeSchema.index({ location: '2dsphere' });
+
+module.exports = mongoose.model('Place', placeSchema);

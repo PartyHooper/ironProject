@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Detail</title>
+</head>
+<body>
+  <div class="topBar">
+  <a href="/"><h2 class="title">Skryer</h2></a>
+  <% if(!logged){%>
+      <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+      <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+  <%} else {%>
+      <img class="profilePic" src=<%=user.picPath%>>
+      <span>Welcome <%=user.provider_name%></span>
+      <a href="/logout"><p class="logout">Logout</p></a>
+  <% } %>
+</div>
+<div id="currentContainer">
+    <h1><%=place.name%></h1>
+    
+    <div class="container">
+        <% if (place.reviews.length>0){%>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->   
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <% for (var i=1; i<place.reviews.length; i++){%>
+
+                <li data-target="#myCarousel" data-slide-to=<%=i%>></li>
+                <%}%>
+              </ol>
+          
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                <figure class="imgcontainer">
+                  <img class="carrusel" src=<%=place.reviews[0].picPath%> alt="CurrentPic">
+                </figure>
+                </div>
+                <% for (var j=1; j<place.reviews.length; j++){%>
+                    <div class="item">
+                        <figure class="imgcontainer">
+                          <img class="carrusel" src=<%=place.reviews[j].picPath%> alt="CurrentPic">
+                        </figure>
+                        </div>
+                <%}%>
+              
+              </div>
+          
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <%} else {%>
+              <div id="noReview">
+                <img src=<%=place.picPath%>>
+                <span>Nobody has uploaded a pic from tongiht yet! Be the first!</span>
+              </div>
+            <%}%>
+            <br>
+       <ul>
+           <% for (var i=Object.keys(place.schedule).length-1; i>=0; i--){%>
+              <li><%=Object.keys(place.schedule)[i]%> : <%=place.schedule[Object.keys(place.schedule)[i]].opening%> to <%=place.schedule[Object.keys(place.schedule)[i]].closing%></li>
+           <%}%>
+           <li>Historia: <%=place.description%></li>
+           <li>Tipo: <%=place.type%></li>
+           <li>Cover: <%=place.pricing.cover%></li>
+       </ul>
+    </div>
+  </div>
+  <div id="totalReview">
+
+  </div>
+    <div class="review-container">
+      <% place.reviews.forEach(function(review){%>
+        <div class="review">
+          <img src=<%=review.creatorPicPath%>>
+          <strong><%=review.creatorName%> rated: <%= review.rating %>/5 at 
+             <% if(review.updated_at.getMinutes()<10){%>
+                <%=review.updated_at.getHours()%>:0<%=review.updated_at.getMinutes()%></strong>
+             <%} else{%>
+              <%=review.updated_at.getHours()%>:<%=review.updated_at.getMinutes()%></strong>
+              <%}%>
+              <img src=<%="/images/"+review.music+".png"%>>
+            <% if (review.crowded==1){ %>
+              <img src="/images/fullCrowd.png">
+          <%} else if (review.crowded==2){%>
+            <img src="/images/averageCrowd.png">
+            <%} else if (review.crowded==3){%>
+              <img src="/images/empty.png">
+            <%}%>
+            <% if(logged && review.creatorId===user.provider_id){%>
+              <a href=<%="/"+place._id+"/update/"+review._id%>><button>Update</button></a><a href=<%="/"+place._id+"/delete/"+review._id%>><button>Delete</button></a
+             <%}%>
+        </div>
+      <%})%>
+    </div>
+    <script>
+        var place=<%- JSON.stringify(place) %>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/show.js"></script>
+
+</body>
+</html>

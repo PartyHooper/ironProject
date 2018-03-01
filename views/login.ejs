@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='/stylesheets/bootstrap.min.css' rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Hopper</title>
+</head>
+<body>
+    <div class="topBar">
+        <a href="/"><h2 class="title">Skryer</h2></a>
+        <% if(!logged){%>
+            <a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+            <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+        <%} else {%>
+            <img class="profilePic" src=<%=user.picPath%>>
+            <span>Welcome <%=user.provider_name%></span>
+            <a href="/logout"><p class="logout">Logout</p></a>
+        <% } %>
+    </div>
+    <div class="login-container">
+        <div>
+            <span>Log in with Facebook</span><a href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+        </div>
+        <div>
+            <span>Log in with Instagram</span><a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a>
+        </div>
+    </div>
+</body>
+
+</html>
+
