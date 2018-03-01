@@ -46,7 +46,11 @@ router.post("/search", (req, res, next)=>{
     if (!place){
       res.redirect("/")
     } else {
-      res.render('show', {place});
+      if (req.user){
+        res.render('show', {place, logged: true, user: req.user});
+      } else{
+        res.render('show', {place, logged: false});
+      }
     }
   })
 router.get("/login", (req, res, next) => {
@@ -121,7 +125,7 @@ router.get("/:id/review", ensureLoggedIn(), (req, res, next)=>{
   })
 })
 
-
+})
 
 
 module.exports = router;
