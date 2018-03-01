@@ -40,9 +40,9 @@ router.get("/logout", (req, res, next) => {
 })
 
 router.post("/search", (req, res, next)=>{
-  console.log(req.body)
+
   Place.findOne({name:req.body.place}, (err, place)=>{
-    console.log(place)
+    
     if (!place){
       res.redirect("/")
     } else {
@@ -53,6 +53,8 @@ router.post("/search", (req, res, next)=>{
       }
     }
   })
+
+})
 router.get("/login", (req, res, next) => {
   if (req.user){
    res.redirect("/");
@@ -60,6 +62,21 @@ router.get("/login", (req, res, next) => {
     res.render("login", {logged: false})
   }
 })
+
+router.get('/user', (req, res, next) => {
+  if (req.user){
+    User.findOne({_id:req.user._id}, (err, user)=>{
+      if (err){
+        res.send(err)
+      } else {
+        res.render('user', {logged: true, user});
+      }
+    })
+  } else{
+        res.redirect("/")
+  }
+});
+
 
 router.get('/:id', (req, res, next) => {
   Place.findOne({_id:req.params.id}, (err, place)=>{
@@ -125,7 +142,6 @@ router.get("/:id/review", ensureLoggedIn(), (req, res, next)=>{
   })
 })
 
-})
 
 
 module.exports = router;
