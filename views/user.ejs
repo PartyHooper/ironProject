@@ -4,21 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href='/stylesheets/bootstrap.min.css' rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Skry</title>
 </head>
 <body>
-    <div class="navBar">
-    <a href="/logout"><p class="logout">Logout</p></a>
-    <a href="/"><h2 class="title">Skryer</h2></a>
-    </div>
-    <div>
-        <img class="profilePic" src=<%=user.picPath%>>
-        <span>Hello <%=user.provider_name%></span>
-    </div>  
-        <p>These are your prior events<%=user.events%></p>
-        <div>
-            <h2>Your reviews</h2>
+    <div class="topBar">
+        <a href="/"><h2 class="title">Skry</h2></a>
+        <% if(!logged){%>
+            <a href="/auth/facebook" id="icon" class="btn-social btn-facebook" ><span class="fab fa-facebook-square"></span>Log in with Facebook</a>
+            <!-- <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a> -->
+        <%} else {%>
+            <a href="/user">
+                <img class="profilePic" src=<%=user.picPath%>
+                 </a>
+            <span>Welcome <%=user.provider_name%></span>
+            <a href="/logout"><p class="logout">Logout</p></a>
+        <% } %>
+      </div>
+        <div class="user-info">
+            <h3>Hello <%=user.provider_name%></h3>
+            <p>Tonight's reviews</p>
+            <div class="review-container">
+                <% reviews.forEach(function(review){%>
+                  <div class="review">
+                        <strong>Rated <%=review.placeName%> a <%= review.rating %>/5 at
+                       <% if(review.updated_at.getMinutes()<10){%>
+                          <%=review.updated_at.getHours()%>:0<%=review.updated_at.getMinutes()%></strong>
+                       <%} else{%>
+                        <%=review.updated_at.getHours()%>:<%=review.updated_at.getMinutes()%></strong>
+                        <%}%>
+                        <img src=<%="/images/"+review.music+".png"%>>
+                      <% if (review.crowded==1){ %>
+                        <img src="/images/fullCrowd.png">
+                    <%} else if (review.crowded==2){%>
+                      <img src="/images/averageCrowd.png">
+                      <%} else if (review.crowded==3){%>
+                        <img src="/images/empty.png">
+                      <%}%>
+                  </div>
+                <%})%>
+              </div>
         </div>
-        
 </body>
 </html>

@@ -63,9 +63,13 @@ passport.use(new FbStrategy({
       return done(err);
     }
     if (user) {
-      
-      user.provider_name= profile.displayName,
-      user.picPath= profile.photos[0].value
+      let friendsArray = [];
+      profile._json.friends.data.forEach(function(friend){
+        friendsArray.push(friend.id)
+      })
+      user.provider_name= profile.displayName;
+      user.picPath= profile.photos[0].value;
+      user.friends = friendsArray;
       user.save((err) => {
         if (err) {
           return done(err);
@@ -73,11 +77,15 @@ passport.use(new FbStrategy({
         return done(null, user);
       });
     } else {
-      console.log(profile._json.friends.data)
+      let friendsArray = [];
+      profile._json.friends.data.forEach(function(friend){
+        friendsArray.push(friend.id)
+      })
       const newUser = new User({
         provider_id: profile.id,
         provider_name: profile.displayName,
-        picPath: profile.photos[0].value
+        picPath: profile.photos[0].value,
+        friends: friendsArray,
       });
   
       newUser.save((err) => {
@@ -112,7 +120,6 @@ function(accessToken, refreshToken, profile, done) {
         return done(null, user);
      });
     } else {
-      console.log(profile)
       const newUser = new User({
         provider_id: profile.id,
         provider_name: profile.displayName,

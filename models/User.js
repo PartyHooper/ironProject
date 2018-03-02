@@ -6,7 +6,8 @@ const userSchema = new Schema({
   provider_name: String,
   picPath: String,
   events: [],
-  password: String
+  password: String, 
+  friends: []
 });
 
 
