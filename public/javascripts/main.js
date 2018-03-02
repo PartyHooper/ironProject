@@ -1,5 +1,6 @@
 let distanceArray=[]
 function startApp(){
+    navigator.geolocation.getCurrentPosition(function (position) {
         const center = {
           lat: 19.3978821,
           lng: -99.1716711
@@ -76,6 +77,7 @@ function startApp(){
             document.getElementsByTagName("body")[0].innerHTML+=element.html;
         })
         $("#loading").hide();
+      });
   }
 
   startApp()
