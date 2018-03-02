@@ -35,7 +35,10 @@ a:hover{
   text-align: center;
 }
 
-
+#subBut{
+  color: black;
+  font-weight: bold;
+}
 
 #middle-container{
   display: flex;
