@@ -9,7 +9,8 @@ const reviewSchema = new Schema({
   music: String,
   crowded: String,
   picPath: String,
-  placeId: String
+  placeId: String,
+  placeName: String
 }, {
     timestamps:{
         createdAt: "created_at",

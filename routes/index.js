@@ -68,11 +68,15 @@ router.get("/login", (req, res, next) => {
 
 router.get('/user', (req, res, next) => {
   if (req.user){
-    User.findOne({_id:req.user._id}, (err, user)=>{
+    Review.find({creatorId:req.user.provider_id}, (err, reviews)=>{
+      console.log(reviews)
       if (err){
         res.send(err)
       } else {
-        res.render('user', {logged: true, user});
+        Place.find({}, (err, places)=>{
+          console.log(places[places.length-1].reviews)
+          res.render('user', {logged: true, user: req.user, reviews, places});
+        })
       }
     })
   } else{
@@ -105,7 +109,8 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
     rating: req.body.rating,
     crowded: req.body.crowd,
     music: req.body.music,
-    placeId: req.params.id
+    placeId: req.params.id,
+    placeName: req.body.place
   });
   
    
@@ -222,7 +227,7 @@ router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => 
                   })
                 }
             })
-          });
+});
 
 
 module.exports = router;
