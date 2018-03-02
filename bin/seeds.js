@@ -5,6 +5,8 @@ const Place = require('../models/Place');
 mongoose.connect('mongodb://fixter:fixter@ds129146.mlab.com:29146/togomx');
 
 
+Place.collection.drop()
+
 const places = [
   { name: "IronHack CDMX",
   location: { type: "Point", coordinates: [-99.1716711, 19.3978821] },

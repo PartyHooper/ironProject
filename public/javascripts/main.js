@@ -1,13 +1,13 @@
 let distanceArray=[]
 function startApp(){
-    navigator.geolocation.getCurrentPosition(function (position) {
         const center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lat: 19.3978821,
+          lng: -99.1716711
         };
         distanceArray=[]
         for (let i=0; i<placesArray.length; i++){
             let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
+
             let placeHTML = ""
             placeHTML+=`<a href="/${placesArray[i]._id}"><div class="place-container">
             <figure class="crop-image">
@@ -65,18 +65,21 @@ function startApp(){
             distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML, id: placesArray[i]._id});
 
         }
-        distanceArray.sort(function(a,b){
-            return a.distance-b.distance;
-        })
-        if (distanceArray[0].distance<0.1){
-            let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are at "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
-            document.getElementById("currentContainer").innerHTML=current
+        if (distanceArray.length>0){
+            distanceArray.sort(function(a,b){
+                return a.distance-b.distance;
+            })
+    
+            if (distanceArray[0].distance<0.1){
+                let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are at "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
+                document.getElementById("currentContainer").innerHTML=current
+            }
+            distanceArray.forEach(function(element){
+                document.getElementsByTagName("body")[0].innerHTML+=element.html;
+            })
         }
-        distanceArray.forEach(function(element){
-            document.getElementsByTagName("body")[0].innerHTML+=element.html;
-        })
+        
         $("#loading").hide();
-      });
   }
 
   startApp()

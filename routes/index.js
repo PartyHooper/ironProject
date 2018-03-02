@@ -22,6 +22,7 @@ router.get('/', (req, res, next) => {
     })
   } else{
     Place.find({}, (err, places)=>{
+      console.log(places)
       if (err){
         res.send(err)
       } else {
