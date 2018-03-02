@@ -6,6 +6,7 @@ body {
 
 a {
   color: white;
+  display: inline;
 }
 
 .place-container{
@@ -18,6 +19,24 @@ a {
   color: white
 }
 
+#events{
+  text-align: center;
+  margin-left: 10%;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+#createEvent, #back{
+  text-align: center;
+}
+
+
+
+#middle-container{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
 .crop-image{
   width: 100%;
   height: 150px;
@@ -173,6 +192,11 @@ a:hover{
 }
 */
 
+input[type=submit]{
+  background-color: white;
+  padding: 0 5px;
+}
+
 #icon{
   height: 2.4em;
   display: flex;
@@ -192,4 +216,11 @@ a:hover{
 
 .friend{
   background-color: red;
+}
+
+.button{
+  background-color: dodgerblue;
+  border:none;
+  padding: 5px;
+  border-radius: 5px;
 }

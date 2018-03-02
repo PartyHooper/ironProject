@@ -42,7 +42,9 @@ router.get("/new", (req, res, next)=>{
 router.post("/new", upload.single('photo'), (req, res, next)=>{
     Event.find({creatorId: req.user.provider_id}, (err, event)=>{
         if (event.length>0){
-            res.render("events/indexEvents", {events, logged: true, user: req.user, message: "You already created an event tonight!"})
+            Event.find({}, (errar, events)=>{
+                res.render("events/indexEvents", {events, logged: true, user: req.user, message: "You already created an event tonight!"})
+            })
         } else {
             let location = {
                 type: 'Point',

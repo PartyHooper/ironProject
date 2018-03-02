@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="topBar">
-        <a href="/"><h2 class="title">Skry</h2></a>
+        <a href="/events/index"><h2 class="title">Skry</h2></a>
         <% if(!logged){%>
             <h4 id="log">Login with</h4>
             <a  href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
@@ -24,10 +24,16 @@
             <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
     </div>
-    <a href="/events/new"><div id="createEvent">
+    <div id="middle-container">
+    <a href="/events/new" id="createEvent"><div>
         Create your own event!
+        <br>
         <%=message%>
     </div></a>
+    <a href="/" id="back"><div>
+            Back to Skry Places
+        </div></a>
+    </div>
     <div id="currentContainer">
   
     </div>
