@@ -22,6 +22,7 @@ router.get('/', (req, res, next) => {
     })
   } else{
     Place.find({}, (err, places)=>{
+      console.log(places)
       if (err){
         res.send(err)
       } else {
@@ -200,8 +201,6 @@ router.post("/:id/update/:reviewid", upload.single('photo'), (req, res, next) =>
   })
 });
 
-<<<<<<< HEAD
-=======
 router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => {
             Place.findById(req.params.id, (error, place) => {
                 if (error) {
@@ -225,7 +224,6 @@ router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => 
                 }
             })
           });
->>>>>>> 3fa4c221a25b20ab3f70f771ae538734d95c93a2
 
 
 module.exports = router;
