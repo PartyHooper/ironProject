@@ -5,9 +5,7 @@ const Place = require('../models/Place');
 mongoose.connect('mongodb://fixter:fixter@ds129146.mlab.com:29146/togomx');
 
 
-Place.find({}, (err, docs)=>{
-  
-}).remove();
+Place.collection.drop()
 
 const places = [
   { name: "IronHack CDMX",
