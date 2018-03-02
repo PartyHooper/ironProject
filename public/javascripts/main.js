@@ -1,5 +1,7 @@
 let distanceArray=[]
+var x = document.getElementById("demo");
 function startApp(){
+    if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function (position) {
         const center = {
           lat: 19.3978821,
@@ -78,6 +80,10 @@ function startApp(){
         })
         $("#loading").hide();
       });
+
+    } else{
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
   }
 
   startApp()
