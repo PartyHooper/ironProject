@@ -97,6 +97,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', upload.single('photo'), (req, res, next) => {
+  console.log("tries")
   Review.find({creatorId: req.user.provider_id}, (error, reviews)=>{
     if (reviews.length>0){
       Place.findOne({_id:req.params.id}, (err, place)=>{
@@ -122,7 +123,7 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
         placeId: req.params.id,
         placeName: req.body.place
       });
-      
+      console.log(review)
        
       review.save((err) => {
         Place.findById(req.params.id, (error, place) => {
