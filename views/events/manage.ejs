@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Skry</title>
+</head>
+<body>
+  <div class="topBar">
+  <a href="/"><h2 class="title">Skry</h2></a>
+    <a href="/user">
+      <img class="profilePic" src=<%=user.picPath%>
+       </a>
+ <span>Welcome <%=user.provider_name%></span>
+      <a href="/logout"><p class="logout">Logout</p></a>
+
+</div>
+<div id="currentContainer">
+    <h1><%=event.name%></h1>
+    
+    <div class="container">
+              <div id="noReview">
+                <img src=<%=event.picPath%>>
+              </div>
+            <br>
+       <ul>
+            <li><strong><%=event.description%></strong></li>
+        <li>From <%=event.startTime%> until <%=event.endTime%></li>
+           <li>Contribution: <%=event.contribution%> pesos</li>
+           <li>Capacity: <%=event.max%> people</li>
+       </ul>
+    </div>
+    <h3>Update your event info</h3>
+    <form action=<%="/events/"+event._id%> method="post" enctype="multipart/form-data">
+        <p>How will you call your event?</p>
+        <input name="name" type="text">
+        <p>How many people can come?</p>
+        <input name="people" type="number">
+        <p>What time will it start?</p>
+        <input name="startTime" type="number">
+        <p>What time will it end?</p>
+        <input name="endTime" type="number">
+        <p>How much should people contribute?</p>
+        <input name="contribution" type="number">
+        <p>Describe your event!</p>
+        <textarea name="description"></textarea>
+        <p>Where's your event?</p>
+        <input id ="searchBar" name="location" type="text">
+        <input id ="latitude" name="latitude" type="number" readonly hidden>
+        <input id ="longitude" name="longitude" type="number" readonly hidden>
+        <br>
+        <br>
+        <p>Add a picture of your place!</p>
+        <br>
+        <input id="image" type="file" name="photo" accept="image/*">
+        <br><br>
+        <input type="submit" value="And done!">
+    </form>
+
+  </div>
+<div id="applicantList">
+    <h3>Applicants</h3>
+    <% event.applicants.forEach(function(applicant){%>
+        <div class="review">
+            <img src=<%=applicant.picPath%>>
+            <span><%=applicant.provider_name%></span>
+            
+        </div>
+        <form action=<%="/events/"+event._id+"/accept"%> method="post">
+            <input name="applicant" value=<%=applicant._id%> hidden readonly>
+            <input type="submit" value="Accept!">
+        </form>
+    <%})%>
+</div> 
+
+<div id="participantsList">
+    <h3>Accepted Guests</h3>
+        <% event.participants.forEach(function(participant){%>
+            <div class="review mine">
+                <img src=<%=participant.picPath%>>
+                <span><%=participant.provider_name%></span>
+                
+            </div>
+        <%})%>
+    </div> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>

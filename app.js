@@ -157,7 +157,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
 const index = require('./routes/index');
+const events = require('./routes/events');
 app.use('/', index);
+app.use('/events', events);
 app.get("/auth/facebook", passport.authenticate("facebook", { scope: ['user_friends'] }));
 app.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/",

@@ -24,45 +24,22 @@
             <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
     </div>
-<!-- Search and filter -->
-    <form id="myForm" action="/search" method="post">
-        <div class="topnav">
-                <input id="barsearch" list="places" name="place">
-            <datalist id="places" >
-                <%places.forEach(function(place){%>
-                     <option value="<%=place.name%>">
-                <%})%>
-              </datalist>
-            <input type ="submit" id="searchInput" value="Buscar">
-        </div>  
-        <!-- <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filtrar
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div> -->
-        <a href="/events/index"><div id="events">
-            Skry Events
-        </div></a>
-    </form>
-  
+    <a href="/events/new"><div id="createEvent">
+        Create your own event!
+        <%=message%>
+    </div></a>
     <div id="currentContainer">
   
-        </div>
+    </div>
   <img id="loading" src="/images/loading.png" alt="">  
 </body>
 <script>
-    var placesArray=<%- JSON.stringify(places) %>
+    var eventsArray=<%- JSON.stringify(events) %>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkS2ZKYa3xtCIJpDDZxsGbbzjG2Yobrww&libraries=places">
     </script>
 
-<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/events.js"></script>
 </html>
-

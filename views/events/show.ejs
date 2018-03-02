@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Skry</title>
+</head>
+<body>
+  <div class="topBar">
+  <a href="/"><h2 class="title">Skry</h2></a>
+    <a href="/user">
+      <img class="profilePic" src=<%=user.picPath%>
+       </a>
+ <span>Welcome <%=user.provider_name%></span>
+      <a href="/logout"><p class="logout">Logout</p></a>
+
+</div>
+<div id="currentContainer">
+    <h1><%=event.name%></h1>
+    
+    <div class="container">
+              <div id="noReview">
+                <img src=<%=event.picPath%>>
+              </div>
+            <br>
+       <ul>
+            <li><strong><%=event.description%></strong></li>
+        <li>From <%=event.startTime%> until <%=event.endTime%></li>
+           <li>Contribution: <%=event.contribution%> pesos</li>
+           <li>Capacity: <%=event.max%> people</li>
+       </ul>
+    </div>
+    <div class="review">
+        <span>Event by <%=event.creatorName%></span> <img src=<%=event.creatorPicPath%>>
+    </div>
+  </div>
+  <% if (user.provider_id===event.creatorId){%>
+    <a href=<%="/events/"+event._id+"/manage"%>><button class="button">Manage your event</button></a>
+    <%} else {%>
+        <h3><%=message%></h3>
+    <a href=<%="/events/"+event._id+"/apply/"+user._id%>><button class="button">Apply to the event!</button></a>
+    <%}%>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>
