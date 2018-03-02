@@ -1,19 +1,22 @@
 body {
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: whitesmoke;
+  background-color: rgb(97, 112, 117);
 }
 
 a {
-  color: black;
+  color: white;
 }
 
 .place-container{
-  background-color: #78B5D0;
+  background-color:black;
   padding: 10px 2.5%;
   margin: 5px 0;
 }
 
+.title{
+  color: white
+}
 
 .crop-image{
   width: 100%;
@@ -31,7 +34,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #2F82A6;
+  background-color:black;
   width: 100%;
 }
 
@@ -105,7 +108,6 @@ a {
   width: 100%;
 }
 
-/* Add a black background color to the top navigation bar */
 .topnav {
   overflow: hidden;
   display: flex;
@@ -130,6 +132,11 @@ a {
   width: 60px;
 }
 
+#log{
+  margin-right: -80px;
+  color: azure;
+}
+
 .logout{
   margin: 0;
 }
@@ -138,20 +145,28 @@ a:hover{
   text-decoration: none;
 }
 
-#myForm{
-  background-color: #04537E;
-  display: flex;
-  flex-wrap: wrap;  
-  padding: 10px 5px;
-  justify-content: space-around;
-  margin-bottom: 10px;
+
+#barsearch{
+  width: 160px;
+  height: 26px;
 }
 
-#filter {
+/* style of the search and login box */
+#myForm{
+  background-color: black;
+  display: flex;
+  align-content: flex-start;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+
+}
+
+/* #filter {
   background-color: #2F82A6;
   display: flex;
   float: right;
   width: 80px;
   height: 27px;
   margin-left: 20px
-}
+} */
