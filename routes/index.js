@@ -105,7 +105,7 @@ router.post('/:id', upload.single('photo'), (req, res, next) => {
     rating: req.body.rating,
     crowded: req.body.crowd,
     music: req.body.music,
-    date: new Date ()
+    placeId: req.params.id
   });
   
    
@@ -171,8 +171,7 @@ router.post("/:id/update/:reviewid", upload.single('photo'), (req, res, next) =>
           review.picPath= `/images/${req.file.filename}`;
           review.rating= req.body.rating,
           review.crowded= req.body.crowd,
-          review.music= req.body.music,
-          review.date= new Date ()
+          review.music= req.body.music
           review.save((err) => {
             Place.findById(req.params.id, (error, place) => {
                 if (error) {
