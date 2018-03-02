@@ -22,7 +22,6 @@ router.get('/', (req, res, next) => {
     })
   } else{
     Place.find({}, (err, places)=>{
-      console.log(places)
       if (err){
         res.send(err)
       } else {
@@ -49,9 +48,9 @@ router.post("/search", (req, res, next)=>{
       res.redirect("/")
     } else {
       if (req.user){
-        res.render('show', {place, logged: true, user: req.user});
+        res.render('show', {place, logged: true, user: req.user, message: null});
       } else{
-        res.render('show', {place, logged: false});
+        res.render('show', {place, logged: false, message: null});
       }
     }
   })
@@ -69,12 +68,10 @@ router.get("/login", (req, res, next) => {
 router.get('/user', (req, res, next) => {
   if (req.user){
     Review.find({creatorId:req.user.provider_id}, (err, reviews)=>{
-      console.log(reviews)
       if (err){
         res.send(err)
       } else {
         Place.find({}, (err, places)=>{
-          console.log(places[places.length-1].reviews)
           res.render('user', {logged: true, user: req.user, reviews, places});
         })
       }
@@ -91,47 +88,62 @@ router.get('/:id', (req, res, next) => {
       res.send(err)
     } else { 
       if (req.user){
-        res.render('show', {place, logged: true, user: req.user});
+        res.render('show', {place, logged: true, user: req.user, message: null});
       } else{
-        res.render('show', {place, logged: false});
+        res.render('show', {place, logged: false, message: null});
       }
     }
   })
 });
 
 router.post('/:id', upload.single('photo'), (req, res, next) => {
-  
-  const review = new Review({
-    creatorId: req.user.provider_id,
-    creatorPicPath: req.user.picPath,
-    picPath: `/images/${req.file.filename}`,
-    creatorName: req.user.provider_name,
-    rating: req.body.rating,
-    crowded: req.body.crowd,
-    music: req.body.music,
-    placeId: req.params.id,
-    placeName: req.body.place
-  });
-  
-   
-  review.save((err) => {
-    Place.findById(req.params.id, (error, place) => {
-        if (error) {
-            next(error);
-        } else {
-          let array=place.reviews
-          array.push(review)
-          place.reviews= array;
-            place.save((error) => {
-              if (error) {
-                  next(error);
-              } else {
-                  res.redirect('/'+req.params.id);
-              }
-          })
+  Review.find({creatorId: req.user.provider_id}, (error, reviews)=>{
+    if (reviews.length>0){
+      Place.findOne({_id:req.params.id}, (err, place)=>{
+        if (err){
+          res.send(err)
+        } else { 
+          if (req.user){
+            res.render('show', {place, logged: true, user: req.user, message:"You already have a review! Just update it!"});
+          } else{
+            res.render('show', {place, logged: false, message: null});
+          }
         }
-    })
-  });
+      })
+    } else {
+      const review = new Review({
+        creatorId: req.user.provider_id,
+        creatorPicPath: req.user.picPath,
+        picPath: `/images/${req.file.filename}`,
+        creatorName: req.user.provider_name,
+        rating: req.body.rating,
+        crowded: req.body.crowd,
+        music: req.body.music,
+        placeId: req.params.id,
+        placeName: req.body.place
+      });
+      
+       
+      review.save((err) => {
+        Place.findById(req.params.id, (error, place) => {
+            if (error) {
+                next(error);
+            } else {
+              let array=place.reviews
+              array.push(review)
+              place.reviews= array;
+                place.save((error) => {
+                  if (error) {
+                      next(error);
+                  } else {
+                      res.redirect('/'+req.params.id);
+                  }
+              })
+            }
+        })
+      });
+    }
+  })
 });
 
 router.get("/:id/review", ensureLoggedIn(), (req, res, next)=>{
@@ -217,7 +229,6 @@ router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => 
                     }
                   })
                   place.reviews= array;
-                  console.log(place)
                   place.save((error) => {
                       if (error) {
                           next(error);

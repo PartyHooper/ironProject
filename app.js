@@ -77,7 +77,6 @@ passport.use(new FbStrategy({
         return done(null, user);
       });
     } else {
-      console.log(profile._json.friends.data)
       let friendsArray = [];
       profile._json.friends.data.forEach(function(friend){
         friendsArray.push(friend.id)
@@ -121,7 +120,6 @@ function(accessToken, refreshToken, profile, done) {
         return done(null, user);
      });
     } else {
-      console.log(profile)
       const newUser = new User({
         provider_id: profile.id,
         provider_name: profile.displayName,

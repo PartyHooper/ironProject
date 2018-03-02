@@ -85,18 +85,24 @@
        </ul>
     </div>
   </div>
+  <p><%=message%></p>
   <div id="totalReview">
 
   </div>
     <div class="review-container">
       <% place.reviews.forEach(function(review){%>
-        <% if(logged && review.creatorId===user.provider_id){%>
-        <div class="review mine">
-          <%} else if (user.friends.indexOf(review.creatorId)!=-1){ %>
-            <div class="review friend"> 
-          <%} else { %>
-            <div class="review"> 
-          <%}%>%>
+        <% if (logged){%>
+          <% if(review.creatorId===user.provider_id){%>
+            <div class="review mine"><strong>Your review</strong>
+              <%} else if (user.friends.indexOf(review.creatorId)!=-1){ %>
+                <div class="review friend"><strong>Your friend's review</strong>
+              <%} else { %>
+                <div class="review"> 
+              <%}%>%>
+        <%} else {%>
+          <div class="review"> 
+          <%}%>
+        
           <img src=<%=review.creatorPicPath%>>
           <strong><%=review.creatorName%> rated: <%= review.rating %>/5 at 
              <% if(review.updated_at.getMinutes()<10){%>
@@ -112,8 +118,10 @@
             <%} else if (review.crowded==3){%>
               <img src="/images/empty.png">
             <%}%>
-            <% if(logged && review.creatorId===user.provider_id){%>
+            <% if (logged){%>
+            <% if(review.creatorId===user.provider_id){%>
               <a href=<%="/"+place._id+"/update/"+review._id%>><button>Update</button></a><a href=<%="/"+place._id+"/delete/"+review._id%>><button>Delete</button></a>
+             <%}%>
              <%}%>
         </div>
       <%})%>
