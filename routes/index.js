@@ -97,7 +97,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', upload.single('photo'), (req, res, next) => {
-  console.log("tries")
   Review.find({creatorId: req.user.provider_id}, (error, reviews)=>{
     if (reviews.length>0){
       Place.findOne({_id:req.params.id}, (err, place)=>{
@@ -234,7 +233,9 @@ router.get("/:id/delete/:reviewid", upload.single('photo'), (req, res, next) => 
                       if (error) {
                           next(error);
                       } else {
+                        Review.remove({_id:req.params.reviewid}, (err, review)=>{
                           res.redirect('/'+req.params.id);
+                        })
                       }
                   })
                 }
