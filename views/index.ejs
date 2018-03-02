@@ -41,66 +41,8 @@
             </button>	
         </div>  
     </form>
-    <!-- <a href=<%='/'+places[places.length-1]._id+"/review"%>><p>It looks like you are at <%=places[places.length-1].name%></p><p>Tell us how it is!</p></a> -->
     <div id="currentContainer">
-        <!-- <% places.forEach(function(place){%>
-            <a href=<%="/"+place._id%>><div class="place-container">
-                    <figure class="crop-image">
-                        <img src="<%=place.picPath%>">
-                    </figure>
-                    <div class="rating-container">
-                        <p class="place-name"><%=place.name%></p> 
-                
-                 <% let avgRating = 0 %>
-                 <% let musicCount = [] %>
-                 <% let crowdCount = 0 %>
-                 <% place.reviews.forEach(function(review){ %>
-                     <% avgRating+=review.rating/place.reviews.length; %>
-                     <% crowdCount+=review.crowded/place.reviews.length; %>
-                     <% let exists=false; %>
-                     <% musicCount.map(function(music){ %>
-                         <%  if (music.genre==review.music){ %>
-                         <%     music.count++; %>
-                             <%    exists=true; %>
-                         <%  } %>
-                     <% }) %>
-                 <%if (!exists){%>
-                     <%  musicCount.push({genre: review.music, count: 1})%>
-                 <% }%>
-                 <%  })%> 
-             <% musicCount.sort(function(a,b){%>
-                 <% return b.count - a.count %>
-             <%})%> 
-             <% if (place.reviews.length>0){ %>
-                <p>Night Rating: <%=avgRating%></p>`
-                <% for(var s=0; s<avgRating; s++){%>
-                    <% if (avgRating-1<s){ %>
-                        <span class="fas fa-star-half"></span>
-                    <%} else {%>
-                        <span class="fas fa-star"></span>
-                    <% }%>
-                <%  }%>
-            <%} else {%>
-              <p>No updates yet</p>
-            <% }%>
-          <p class="distance"></p></div>
-          <div class="emotions-container">
-            <% if (place.reviews.length>0){%>
-            
-                <span>Currently playing:<img src=<%="images/"+musicCount[0].genre+".png"%>></span>
-                <% if (crowdCount <1.5){ %>
-                    <span>Crowd:<img src="images/fullCrowd.png"></span>
-                   <% } else if (crowdCount<2.5) { %>
-                    <span>Crowd:<img src="images/averageCrowd.png"></span>
-                    <% } else {%>
-                    <span>Crowd:<img src="images/empty.png"></span>
-               <% } %>
-            <%}%>
-        </div>
-            
-        </div> 
-        </div></a>
-        <%})%> -->
+  
         </div>
   <img id="loading" src="/images/loading.png" alt="">  
 </body>
