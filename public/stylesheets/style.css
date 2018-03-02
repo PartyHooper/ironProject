@@ -1,11 +1,15 @@
 body {
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(97, 112, 117);
+  background-color: rgb(153, 163, 167);
 }
 
 a {
   color: white;
+}
+
+a:hover{
+  color: rgb(108, 189, 209);
 }
 
 .place-container{
@@ -13,6 +17,7 @@ a {
   padding: 10px 2.5%;
   margin: 5px 0;
 }
+
 
 .title{
   color: white
@@ -126,6 +131,7 @@ a {
   margin-left: 5px;
   font-size: 17px;
 }
+
 
 #searchInput{
   height: 32px;
