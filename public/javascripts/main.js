@@ -79,7 +79,6 @@ function startApp(){
             })
         }
         
-        $("#loading").hide();
   }
 
   startApp()
