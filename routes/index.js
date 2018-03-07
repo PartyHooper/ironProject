@@ -12,23 +12,25 @@ const upload = multer({ dest: './public/images/' });
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  if (req.user){
-    Place.find({}, (err, places)=>{
-      if (err){
-        res.send(err)
-      } else {
-        res.render('index', {places, logged: true, user: req.user});
-      }
-    })
-  } else{
-    Place.find({}, (err, places)=>{
-      if (err){
-        res.send(err)
-      } else {
-        res.render('index', {places, logged: false});
-      }
-    })
-  }
+  Review.find({}, (err2, reviews)=>{
+    if (req.user){
+      Place.find({}, (err, places)=>{
+        if (err){
+          res.send(err)
+        } else {
+          res.render('index', {places, logged: true, user: req.user, reviews});
+        }
+      })
+    } else{
+      Place.find({}, (err, places)=>{
+        if (err){
+          res.send(err)
+        } else {
+          res.render('index', {places, logged: false, reviews});
+        }
+      })
+    }
+  })
 });
 
 router.get("/logout", (req, res, next) => {
@@ -97,7 +99,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/:id', upload.single('photo'), (req, res, next) => {
-  Review.find({creatorId: req.user.provider_id}, (error, reviews)=>{
+  Review.find({creatorId: req.user.provider_id, placeId:req.params.id}, (error, reviews)=>{
     if (reviews.length>0){
       Place.findOne({_id:req.params.id}, (err, place)=>{
         if (err){

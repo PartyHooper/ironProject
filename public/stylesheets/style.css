@@ -1,11 +1,11 @@
 body {
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(153, 163, 167);
+  background-color: white;
 }
 
 a {
-  color: white;
+  color: black;
   display: inline;
 }
 
@@ -14,14 +14,13 @@ a:hover{
 }
 
 .place-container{
-  background-color:black;
   padding: 10px 2.5%;
   margin: 5px 0;
 }
 
 
 .title{
-  color: white
+  color: black;
 }
 
 #events{
@@ -54,20 +53,33 @@ a:hover{
 
 .crop-image img{
   width: 100%;
-  margin-top: -40px;
 }
 
+#main-container{
+  padding-top: 70px;
+}
+
+.review img{
+  padding: 5px;
+}
 .topBar{
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color:black;
+  background-color:#E9E9E9;
+  border-bottom: 2px solid grey;
   width: 100%;
+  font-weight: bold;
+  position: fixed;
+}
+
+#welcome{
+  width: 30%;
 }
 
 .topBar img{
   border-radius: 50%;
-  width: 25%;
+  width: 15%;
 }
 
 .place-name{
@@ -102,7 +114,7 @@ a:hover{
   vertical-align: middle;
 }
 
-#currentContainer{
+#currentContainer, #locationContainer{
   text-align: center;
 }
 
@@ -124,7 +136,7 @@ a:hover{
   padding: 5px 0;
   margin: 10px 5%;
   border-radius: 10px;
-  color: whitesmoke;
+  color: black;
 }
 
 #noReview img{
@@ -162,7 +174,7 @@ a:hover{
 
 #log{
   margin-right: -80px;
-  color: azure;
+  color: black;
 }
 
 .logout{
@@ -232,4 +244,77 @@ input[type=submit]{
   border:none;
   padding: 5px;
   border-radius: 5px;
+}
+
+#largeTitle{
+  width: 100%;
+  text-align: center;
+}
+
+#locationContainer{
+  background-color: #99D3DF;
+  font-style: italic;
+}
+
+#myReviews{
+  opacity: 0;
+}
+
+#infoContainer{
+  border-right: 3px solid grey;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width:600px){
+  #infoContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  .place-container{
+    width: 40%;
+    box-sizing: border-box;
+  }
+  #locationContainer{
+    display: none;
+  }
+}
+
+@media screen and (min-width:900px){
+  #infoContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70%;
+    float: left;
+  }
+  .place-container{
+    width: 40%;
+    box-sizing: border-box;
+  }
+  #myReviews{
+    position: fixed;
+    right: 0;
+    opacity: 1;
+    float: left;
+    width: 30%;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width:1200px){
+  #infoContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  .place-container{
+    width: 40%;
+    box-sizing: border-box;
+  }
 }

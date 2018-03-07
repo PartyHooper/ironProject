@@ -1,0 +1,226 @@
+body {
+    padding: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: white;
+  }
+  
+  a {
+    color: black;
+    display: inline;
+  }
+  
+  a:hover{
+    color: rgb(108, 189, 209);
+  }
+  
+
+  
+  .review img{
+    padding: 5px;
+  }
+  .topBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#E9E9E9;
+    border-bottom: 2px solid grey;
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  #welcome{
+    width: 30%;
+  }
+  
+  .topBar img{
+    border-radius: 50%;
+    width: 15%;
+  }
+  
+  .place-name{
+    font-weight: bold;
+  }
+  
+  .rating-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .emotions-container{
+    text-align: center;
+  }
+  
+  .emotions-container span{
+    margin: 0 5px;
+  }
+  
+  .emotions-container p{
+    display: inline;
+  }
+  
+  .emotions-container img{
+    width: 10%;
+  }
+  
+  .icon-mus{
+    border-radius: 50%;
+    padding: 3.55%;
+    vertical-align: middle;
+  }
+  
+  #currentContainer, #locationContainer{
+    text-align: center;
+  }
+  
+  .login-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .login-container div{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  #totalReview{
+    background-color: #056087;
+    padding: 5px 0;
+    margin: 10px 5%;
+    border-radius: 10px;
+    color: black;
+  }
+  
+  #noReview img{
+    width: 100%;
+  }
+  
+  #loading{
+    width: 100%;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  /* Style the search box inside the navigation bar */
+  .topnav input[type=text] {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 5px;
+    font-size: 17px;
+  }
+  
+  
+  #searchInput{
+    height: 32px;
+    width: 60px;
+  }
+  
+  #log{
+    margin-right: -80px;
+    color: black;
+  }
+  
+  .logout{
+    margin: 0;
+  }
+  
+  a:hover{
+    text-decoration: none;
+  }
+  
+  
+  #barsearch{
+    width: 160px;
+    height: 26px;
+  }
+  
+  /* style of the search and login box */
+  #myForm{
+    background-color: black;
+    display: flex;
+    align-content: flex-start;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  
+  }
+  
+  /*
+   #filter {
+    background-color: #2F82A6;
+    display: flex;
+    float: right;
+    width: 80px;
+    height: 27px;
+    margin-left: 20px
+  }
+  */
+  
+  input[type=submit]{
+    background-color: white;
+    padding: 0 5px;
+  }
+  
+  #icon{
+    height: 2.4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 0 5px 0 2.4em;
+  }
+  
+  .user-info{
+    text-align: center;
+    padding-top: 60px;
+  }
+  
+  .mine{
+    background-color: goldenrod;
+  }
+  
+  .friend{
+    background-color: red;
+  }
+  
+  .button{
+    background-color: dodgerblue;
+    border:none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+ 
+  
+  @media screen and (min-width:600px){
+    .container{
+        display: flex;
+        justify-content: space-around;
+    }
+ 
+  }
+  
+  @media screen and (min-width:900px){
+    .container{
+       width: 60%;
+       float: left;
+    }
+
+
+  }
+  
+  @media screen and (min-width:1200px){
+   
+  }

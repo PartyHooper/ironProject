@@ -9,24 +9,25 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
     <link rel='stylesheet' href='/stylesheets/detail.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/show.css' />
     <title>Skry</title>
 </head>
 <body>
-  <div class="topBar">
-  <a href="/"><h2 class="title">Skry</h2></a>
-  <% if(!logged){%>
-    <a href="/auth/facebook" id="icon" class="btn-social btn-facebook" ><span class="fab fa-facebook-square"></span>Log in with Facebook</a>
-    <!-- <a href="/auth/instagram" ><button class="btn-social-icon btn-instagram"><span class="fab fa-instagram"></span></button></a> -->
-  <%} else {%>
-    <a href="/user">
-      <img class="profilePic" src=<%=user.picPath%>
-       </a>
- <span>Welcome <%=user.provider_name%></span>
-      <a href="/logout"><p class="logout">Logout</p></a>
-  <% } %>
-</div>
-<div id="currentContainer">
+    <div class="topBar">
+        <a href="/"><h2 class="title">Skry</h2></a>
+        <% if(!logged){%>
+            <h4 id="log">Login with</h4>
+            <a  href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
+        <%} else {%>
+            <a id="welcome" href="/user">
+           <img class="profilePic" src=<%=user.picPath%>
+            
+            <span>Welcome <%=user.provider_name%></span>
+        </a>
+            <a href="/logout"><p class="logout">Logout</p></a>
+        <% } %>
+    </div> 
+<div id="main-container">
     <h1><%=place.name%></h1>
     
     <div class="container">
@@ -76,10 +77,11 @@
             <%}%>
             <br>
        <ul>
+         <h3><b>Information</b></h3>
            <% for (var i=Object.keys(place.schedule).length-1; i>=0; i--){%>
               <li><%=Object.keys(place.schedule)[i]%> : <%=place.schedule[Object.keys(place.schedule)[i]].opening%> to <%=place.schedule[Object.keys(place.schedule)[i]].closing%></li>
            <%}%>
-           <li>Historia: <%=place.description%></li>
+           <li><%=place.description%></li>
            <li>Tipo: <%=place.type%></li>
            <li>Cover: <%=place.pricing.cover%></li>
        </ul>
@@ -87,9 +89,9 @@
   </div>
   <p><%=message%></p>
   <div id="totalReview">
-
   </div>
     <div class="review-container">
+      <h2>Latest Reviews</h2>
       <% place.reviews.forEach(function(review){%>
         <% if (logged){%>
           <% if(review.creatorId===user.provider_id){%>
@@ -126,11 +128,12 @@
         </div>
       <%})%>
     </div>
-    <script>
-        var place=<%- JSON.stringify(place) %>
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/javascripts/show.js"></script>
+    
 
 </body>
+<script>
+    var place=<%- JSON.stringify(place) %>
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/javascripts/show.js"></script>
 </html>

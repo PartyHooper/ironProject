@@ -9,10 +9,11 @@ function startApp(){
             let distanceKM= distanceInKmBetweenEarthCoordinates(center.lat, center.lng, placesArray[i].location.coordinates[1], placesArray[i].location.coordinates[0])
 
             let placeHTML = ""
-            placeHTML+=`<a href="/${placesArray[i]._id}"><div class="place-container">
+            placeHTML+=`<div class="place-container">
+            <a href="/${placesArray[i]._id}">
             <figure class="crop-image">
                 <img src=${placesArray[i].picPath}>
-            </figure>
+            </figure></a>
             <div class="rating-container">
             <p class="place-name">${placesArray[i].name}</p>`
             let avgRating = 0
@@ -61,7 +62,7 @@ function startApp(){
             }
             placeHTML+="</div>"
             }
-            placeHTML+="</div></a>"
+            placeHTML+="</div>"
             distanceArray.push({distance: distanceKM, name: placesArray[i].name, html: placeHTML, id: placesArray[i]._id});
 
         }
@@ -72,10 +73,10 @@ function startApp(){
     
             if (distanceArray[0].distance<0.1){
                 let current = "<a href='/"+distanceArray[0].id+"/review'><p>It looks like you are at "+distanceArray[0].name+"</p><p>Tell us how it is!</p></a>";
-                document.getElementById("currentContainer").innerHTML=current
+                document.getElementById("locationContainer").innerHTML=current
             }
             distanceArray.forEach(function(element){
-                document.getElementsByTagName("body")[0].innerHTML+=element.html;
+                document.getElementById("infoContainer").innerHTML+=element.html;
             })
         }
         

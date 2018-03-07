@@ -26,8 +26,7 @@
                     <a href="/logout"><p class="logout">Logout</p></a>
                 <% } %>
               </div>
-    <div id="currentContainer">
-    <h1><%=place.name%></h1>
+    <div id="main-container">
     <form action=<%="/"+place._id%> method="post" enctype="multipart/form-data">
         <p>You are rating:</p>
         <input name="place" type="text" value="<%=place.name%>" readonly>

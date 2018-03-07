@@ -7,6 +7,7 @@
     <link href='/stylesheets/bootstrap.min.css' rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/bootstrap-social.css' />
+    <link rel='stylesheet' href='/stylesheets/detail.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Skry</title>
 </head>
@@ -17,42 +18,49 @@
             <h4 id="log">Login with</h4>
             <a  href="/auth/facebook"><button class="btn-social-icon btn-facebook"><span class="fab fa-facebook-square"></span></button></a>
         <%} else {%>
-            <a href="/user">
+            <a id="welcome" href="/user">
            <img class="profilePic" src=<%=user.picPath%>
-            </a>
+            
             <span>Welcome <%=user.provider_name%></span>
+        </a>
             <a href="/logout"><p class="logout">Logout</p></a>
         <% } %>
+    </div> 
+    <div id="main-container">
+    <div id="locationContainer">
+  
     </div>
-<!-- Search and filter -->
-    <form id="myForm" action="/search" method="post">
-        <div class="topnav">
-                <input id="barsearch" list="places" name="place">
-            <datalist id="places" >
-                <%places.forEach(function(place){%>
-                     <option value="<%=place.name%>">
-                <%})%>
-              </datalist>
-            <input type ="submit" id="searchInput" value="Search">
-        </div>  
-        <!-- <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filtrar
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div> -->
-        <a href="/events/index" id="events"><div>
-            Skry Events
-        </div></a>
-    </form>
-  
-    <div id="currentContainer">
-  
+    <div id="infoContainer">
+        <div id="largeTitle">
+            <h2>Places Near You</h2>
         </div>
+    </div>
+
+    <div id="myReviews">
+        <h2>Recent Reviews</h2>
+        <div class="review-container">
+            <% reviews.forEach(function(review){%>
+              <div class="review">
+                  <img src=<%=review.creatorPicPath%>>
+                    <strong>Rated <%=review.placeName%> a <%= review.rating %>/5 at
+                   <% if(review.updated_at.getMinutes()<10){%>
+                      <%=review.updated_at.getHours()%>:0<%=review.updated_at.getMinutes()%></strong>
+                   <%} else{%>
+                    <%=review.updated_at.getHours()%>:<%=review.updated_at.getMinutes()%></strong>
+                    <%}%>
+                    <img src=<%="/images/"+review.music+".png"%>>
+                  <% if (review.crowded==1){ %>
+                    <img src="/images/fullCrowd.png">
+                <%} else if (review.crowded==2){%>
+                  <img src="/images/averageCrowd.png">
+                  <%} else if (review.crowded==3){%>
+                    <img src="/images/empty.png">
+                  <%}%>
+              </div>
+            <%})%>
+          </div>
+    </div>
+</div>
 </body>
 <script>
     var placesArray=<%- JSON.stringify(places) %>
